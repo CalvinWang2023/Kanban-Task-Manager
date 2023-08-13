@@ -1,17 +1,17 @@
 import { useSelector } from 'react-redux';
 import './Board.css';
-import Sidebar from '../../components/sidebar/Sidebar';
-import { useMediaQuery } from 'react-responsive';
+import Header from '../header/Header';
 
 const Board = () => {
-    const isBigScreen = useMediaQuery({query: "(min-width: 768px)"});
+    const sidebarToggle = useSelector((state) => state.sidebarToggle);
+
     const boards = useSelector((state) => state.boards);
     const activeBoardIndex = useSelector((state) => state.activeBoardIndex);
     const activeBoard = boards[activeBoardIndex];
 
     return (
-        <div className="board-container">
-            { isBigScreen && <Sidebar /> }
+        <div className={sidebarToggle ? 'board-container full-screen' : 'board-container' }>
+            <Header /> 
             <ul className='board'>
                 {
                     activeBoard.columns.map((column) => {
