@@ -5,7 +5,6 @@ import './Header.css';
 import logo from "../../assets/logo-mobile.svg";
 import chevronUp from '../../assets/icon-chevron-up.svg';
 import chevronDown from '../../assets/icon-chevron-down.svg';
-import addTask from '../../assets/icon-add-task-mobile.svg';
 import ellipsis from '../../assets/icon-vertical-ellipsis.svg';
 import { useSelector } from "react-redux";
 

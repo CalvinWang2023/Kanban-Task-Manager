@@ -52,7 +52,7 @@
     background-color: var(--hover-color);
 }
 .header-container header button p {
-    color: white;
+    color: var(--text-color);
     font-weight: 700;
     font-size: 1.1rem;
     padding: 6px 18px;
