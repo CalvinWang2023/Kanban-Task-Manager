@@ -5,8 +5,7 @@ const ActiveBoardSlice = createSlice({
     initialState: 0,
     reducers: {
         changeActiveBoardIndex: (state, action) => {
-            const payload = action.payload;
-            state = payload.board_index;
+            return action.payload.boardIndex;
         },
     },
 });
