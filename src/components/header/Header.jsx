@@ -14,19 +14,20 @@ const Header = () => {
     const boards = useSelector((state) => state.boards);
     const activeBoardIndex = useSelector((state) => state.activeBoardIndex); 
     const activeBoard = boards[activeBoardIndex];
+    const sidebarToggle = useSelector((state) => state.sidebarToggle);
 
     return (
        <div className="header-container">
             <header>
-                <div className="left">
-                    <div className="logo-container">
-                        <img src={ logo } alt="logo" />
-                        {isBigScreen && <h3 className="logo-text">kanban</h3>}
-                    </div>
-                    <div className="board-name-container">
-                        <h4>{ activeBoard.name }</h4>
-                        { !isBigScreen && <img src={ boardModalUnfolded ? chevronDown : chevronUp } onClick={ () => setBoardModalUnfolded(!boardModalUnfolded) } alt="chevron up/down" /> }
-                    </div>
+                <div className="board-name-container">
+                    { (!isBigScreen || sidebarToggle) && <img className="logo" src={ logo } alt="logo" /> }
+                    <h4>{ activeBoard.name }</h4>
+                    { !isBigScreen && <img 
+                                            src={ boardModalUnfolded ? chevronDown : chevronUp } 
+                                            onClick={ () => setBoardModalUnfolded(!boardModalUnfolded) } 
+                                            className="chevron"
+                                            alt="chevron up/down" /> 
+                    }
                 </div>
                 <div className="right">
                     <button>   
