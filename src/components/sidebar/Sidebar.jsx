@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import iconBoard from "../../assets/icon-board.svg";
 import ActiveBoardSlice from "../../redux/ActiveBoardSlice";
+import iconDarkTheme from "../../assets/icon-dark-theme.svg";
 import './Sidebar.css';
 
 const Sidebar = () => {
@@ -21,18 +22,21 @@ const Sidebar = () => {
                 {
                     boards.map((board, index) => {
                         return (
-                            <section
+                            <li
                                 key={index}
                                 className={activeBoard === index ? "board-section active-board" : "board-section"}
                                 onClick={() => changeBoardClick(index)}
                             >
                                 <img src={iconBoard} alt="icon board" />
-                                <li>{board.name}</li>
-                            </section>
+                                <p>{board.name}</p>
+                            </li>
                         )
                     })
                 }
             </ul>
+            <div className="theme-switch">
+                <img src={iconDarkTheme} alt="dark theme icon" />
+            </div>
         </div>
     )
 }
