@@ -1,0 +1,57 @@
+.board-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.board-container .board {
+    background-color: var(--board-bg-color);
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+
+    padding: 25px;
+    width: 100%;
+}
+
+.board-container .board li {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 300px;
+}
+
+.board-container .board li .status {
+    font-weight: 700;
+    color: var(--sidebar-color);
+    letter-spacing: 2px;
+    font-size: .9rem;
+}
+
+.board-container .board li .card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 25px;
+    background-color: var(--text-color);
+    box-shadow: 2px 2px 20px var(--sidebar-hover-color);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.board-container .board li .card .title {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--black-text-color);
+}
+
+.board-container .board li .card:hover .title {
+    color: var(--button-color);
+}
+
+.board-container .board li .card .subtask {
+    font-weight: 700;
+    color: var(--sidebar-color);
+    font-size: .85rem;
+}
