@@ -27,7 +27,7 @@
 }
 
 .header-container header .board-name-container h4 {
-    font-size: 1.3rem;
+    font-size: 1.3rem;  
 }
 
 .header-container header .board-name-container img {
@@ -69,6 +69,9 @@
 @media only screen and (min-width: 768px) {
     .header-container header {
         margin: 20px 25px;
+    }
+    .header-container header .board-name-container {
+        margin-left: 120px;
     }
     .header-container header button {
         border-radius: 25px;
