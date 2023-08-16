@@ -23,13 +23,5 @@ body {
 }
 
 ::-webkit-scrollbar {
-    max-width: 0.5rem;
-}
-
-::-webkit-scrollbar-track {
-    background-color: var(--text-color);
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: var(--button-color);
+    display: none;
 }
