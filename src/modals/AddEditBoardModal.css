@@ -1,0 +1,115 @@
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-container .modal {
+    border: 1px var(--text-color) solid;
+    background-color: white;
+    box-shadow: 1px 1px 1px var(--text-color);
+    border-radius: 20px;
+    padding: 20px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    gap: 25px;
+}
+
+.modal-container .modal .title {
+    font-size: .7rem;;
+}
+
+.modal-container .modal label {
+    color: var(--sidebar-color);
+    font-weight: 700;
+    font-size: .9rem
+}
+
+.modal-container .modal input {
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px var(--sidebar-hover-color) solid;
+    outline-color: var(--button-color);
+}
+
+.modal-container .modal .board-name-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 500px;
+}
+
+.modal-container .modal .board-column-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-container .modal .board-column-input .column-task {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+}
+.modal-container .modal .board-column-input .column-task img {
+    cursor: pointer;
+}
+.modal-container .modal .board-column-input .column-task img:hover {
+    filter: invert(13%) sepia(85%) saturate(6367%) hue-rotate(7deg) brightness(92%) contrast(130%);
+}
+
+.modal-container .modal .board-column-input .column-task input {
+    width: 475px;
+}
+
+.modal-container .modal button {
+    width: 500px;
+    padding: 15px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.modal-container .modal button p {
+    font-weight: 700;
+    font-size: .9rem;
+}
+
+.modal-container .modal .create-column-button {
+    background-color: var(--board-bg-color);
+}
+.modal-container .modal .create-column-button:hover {
+    background-color: var(--hover-color);   
+}
+.modal-container .modal .create-column-button:hover p {
+    color: var(--text-color);
+}
+
+.modal-container .modal .create-board-button {
+    background-color: var(--button-color);
+}
+.modal-container .modal .create-board-button:hover {
+    background-color: var(--hover-color);
+}
+
+.modal-container .modal .create-column-button p {
+    color: var(--button-color);
+}
+
+.modal-container .modal .create-board-button p {
+    color: var(--text-color);
+}

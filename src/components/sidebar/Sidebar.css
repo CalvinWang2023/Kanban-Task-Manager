@@ -3,9 +3,6 @@
     padding-right: 30px;
     position: fixed;
 }
-.closed {
-    display: none;
-}
 
 .sidebar-container .logo-container {
     display: flex;
@@ -31,13 +28,6 @@
     font-weight: 700;
     font-size: .85rem;
     letter-spacing: 1.3px;
-}
-.sidebar-container ul {
-    list-style: none;
-    
-    display: flex;
-    flex-direction: column;
-    width: 260px; 
 }
 
 .sidebar-hide {
@@ -84,6 +74,14 @@
     font-weight: 700;
 }
 
+.sidebar-container ul {
+    list-style: none;
+    
+    display: flex;
+    flex-direction: column;
+    width: 260px; 
+}
+
 .sidebar-container ul .board-section {
     display: flex;
     flex-direction: row;
@@ -97,6 +95,38 @@
     font-size: 1rem;
     cursor: pointer;
     transition: .3s;
+}
+
+.sidebar-container ul .add-board-button button {
+    width: 260px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 18px;
+    padding-left: 35px;
+    border-bottom-right-radius: 40px;
+    border-top-right-radius: 40px;
+    color: var(--button-color);
+
+    border: none;
+    background-color: transparent;
+
+    font-size: 1rem;
+    cursor: pointer;
+    transition: .3s; 
+}
+
+.sidebar-container ul .add-board-button button p {
+    font-weight: 700;
+}
+
+.sidebar-container ul .add-board-button button img {
+    filter: invert(56%) sepia(58%) saturate(5507%) hue-rotate(220deg) brightness(88%) contrast(77%); 
+}
+
+.sidebar-container ul .add-board-button button:hover {
+    background-color: var(--sidebar-hover-color);
 }
 
 .sidebar-container ul .board-section p {

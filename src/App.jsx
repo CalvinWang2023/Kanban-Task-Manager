@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useMediaQuery } from "react-responsive";
 import Board from './components/board/Board';
 import Sidebar from './components/sidebar/Sidebar';
@@ -12,8 +12,10 @@ const App = () => {
 
     return (
         <div className={`App ${ theme }`}>
-            { isBigScreen && <Sidebar /> }
-            
+            { 
+                isBigScreen && 
+                <Sidebar /> 
+            }
             <Board />
         </div>
     )
