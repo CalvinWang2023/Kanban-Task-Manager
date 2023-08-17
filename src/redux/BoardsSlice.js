@@ -14,6 +14,12 @@ const BoardsSlice = createSlice({
             board.columns = payload.newColumns;
             state.push(board);
         },
+        editBoard: (state, action) => {
+            const payload = action.payload;
+            const activeBoard = state[payload.index];
+            activeBoard.name = payload.name;
+            activeBoard.columns = payload.newColumns;
+        },
     },
 });
 

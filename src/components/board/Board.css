@@ -21,21 +21,40 @@
 
     padding: 25px;
     padding-left: 65px;
-    width: 100%;
+    min-width: 100%;  
+    overflow-x: scroll;
 }
 
 .board-container .board li {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 300px;
+    width: 290px;
 }
 
+.board-container .board li button {
+    height: 100%;
+    width: 290px;
+    border: none;
+    background-color: var(--sidebar-hover-color);
+    font-size: 1.25rem;
+    color: var(--sidebar-color);
+    cursor: pointer;
+}
+
+.board-container .board li button:hover h2 {
+    color: var(--button-color);
+}
+
+.board-container .board li .add-new-col {
+    visibility: hidden;
+}
 .board-container .board li .status {
     font-weight: 700;
     color: var(--sidebar-color);
-    letter-spacing: 1.5px;
+    letter-spacing: 1.1px;
     font-size: .9rem;
+    width: 290px;
 }
 
 .board-container .board li .card {

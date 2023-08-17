@@ -1,21 +1,28 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './Board.css';
 import Header from '../header/Header';
 import AddEditBoardModal from "../../modals/AddEditBoardModal";
-import { useState } from 'react';
+import BoardModalToggleSlice from "../../redux/BoardModalToggleSlice";
+import BoardModalTypeSlice from "../../redux/BoardModalTypeSlice";
 
 const Board = () => {
     const sidebarToggle = useSelector((state) => state.sidebarToggle);
-    const boardModal = useSelector((state) => state.boardModalToggle);
-
+    const boardModalToggle = useSelector((state) => state.boardModalToggle);
     const boards = useSelector((state) => state.boards);
     const activeBoardIndex = useSelector((state) => state.activeBoardIndex);
+    const boardModalType = useSelector((state) => state.boardModalType);
     const activeBoard = boards[activeBoardIndex];
+    const dispatch = useDispatch();
+
+    const boardModalToggleClick = () => {
+        dispatch(BoardModalToggleSlice.actions.toggleBoardModal());
+        dispatch(BoardModalTypeSlice.actions.changeEditType());
+    }
 
     return (
         <div className={sidebarToggle ? 'board-container full-screen' : 'board-container' }>
             <Header /> 
-            { !boardModal && (<AddEditBoardModal />) }
+            { boardModalToggle && (<AddEditBoardModal type={ boardModalType } />) }
             <ul className='board'>
                 {
                     activeBoard.columns.map((column, columnIndex) => {
@@ -44,6 +51,13 @@ const Board = () => {
                         )
                     })
                 }
+                
+                <li>
+                    <p className='status add-new-col'>Add New Column</p>
+                    <button onClick={ boardModalToggleClick }>
+                        <h2>+ New Column</h2>
+                    </button>
+                </li>
             </ul>
         </div>
     )

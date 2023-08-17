@@ -1,12 +1,16 @@
 import './AddEditBoardModal.css';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import BoardModalToggleSlice from "../redux/BoardModalToggleSlice";
 import BoardsSlice from '../redux/BoardsSlice';
 import cross from '../assets/icon-cross.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const AddEditBoardModal = () => {
+const AddEditBoardModal = ({ type }) => {
     const dispatch = useDispatch();
+    const boards = useSelector((state) => state.boards);
+    const activeBoardIndex = useSelector((state) => state.activeBoardIndex);
+    const activeBoard = boards[activeBoardIndex];
+
     const placeholders = ['e.g. Todo...', 'e.g. Doing...', 'e.g. Done...', 'Your Column Title...'];
     const [boardName, setBoardName] = useState('');
     const [columns, setColumns] = useState([{ name: '', tasks: [] }, { name: '', tasks: [] }]);
@@ -17,7 +21,12 @@ const AddEditBoardModal = () => {
 
     const CreateBoardClick = () => {
         const newColumns =  columns.filter((column) => column.name !== '');
-        dispatch(BoardsSlice.actions.addBoard({ name: boardName, newColumns: newColumns }));
+        type === 'add' ? 
+            dispatch(BoardsSlice.actions.addBoard({ name: boardName, 
+                                                        newColumns: newColumns }))
+            : dispatch(BoardsSlice.actions.editBoard({ name: boardName, 
+                                                        newColumns: newColumns, 
+                                                        index: activeBoardIndex }));
         boardModalToggleClick();
     }
 
@@ -29,14 +38,20 @@ const AddEditBoardModal = () => {
     }
 
     const cancelColumnClick = (index) => {
-        let columnIndex = index <= 1 ? 2 : index;
-
         setColumns((prevColumns) => {
             const newColumns = [...prevColumns];
-            newColumns.splice(columnIndex, 1);
+            newColumns.splice(index, 1);
             return newColumns;
         })
     }
+
+    useEffect(() => {
+        if (type === 'edit') {
+            setBoardName(activeBoard.name);
+            setColumns(activeBoard.columns);
+        }
+        console.log('koniqiwa');
+    }, []);
 
     return (
         <div 
@@ -50,7 +65,7 @@ const AddEditBoardModal = () => {
         >
             <div className="modal">
                 <div className="title">
-                    <h1>Add New Board</h1>
+                    <h1>{ type === 'add' ? 'Add New Board' : "Edit Board" }</h1>
                 </div>
                 <div className='board-name-input'>
                     <label htmlFor="board-name">Board Name</label>
@@ -76,8 +91,8 @@ const AddEditBoardModal = () => {
                                         placeholder={ index > 2 ? placeholders[3] : placeholders[index] }
                                         value={ column.name }
                                         onChange={ (e) => setColumns((prevcolumns) => {
-                                                                const newColumns = [...prevcolumns]
-                                                                newColumns[index].name = e.target.value;
+                                                                const newColumns = [...prevcolumns];
+                                                                newColumns[index] = { ...newColumns[index], name: e.target.value };
                                                                 return newColumns;
                                                             }) 
                                                  } 
@@ -93,10 +108,10 @@ const AddEditBoardModal = () => {
                     }
                 </div>
                 <button className='create-column-button' onClick={ CreateColumnClick }>
-                    <p>+ Create New Columns</p>
+                    <p>+ Add New Columns</p>
                 </button>               
                 <button className='create-board-button' onClick={ CreateBoardClick }>
-                    <p>Create New Board</p>
+                    <p>{ type === 'add' ? 'Create New Board' : 'Save Changes' }</p>
                 </button>
             </div>
         </div>

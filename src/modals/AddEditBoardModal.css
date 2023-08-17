@@ -46,6 +46,10 @@
     outline-color: var(--button-color);
 }
 
+.modal-container .modal input:hover {
+    border-color: var(--button-color); /* Change this to the desired hover color */
+}
+
 .modal-container .modal .board-name-input {
     display: flex;
     flex-direction: column;

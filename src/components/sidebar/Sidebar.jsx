@@ -4,6 +4,7 @@ import iconBoard from "../../assets/icon-board.svg";
 import ActiveBoardSlice from "../../redux/ActiveBoardSlice";
 import SidebarToggleSlice from "../../redux/SidebarToggleSlice";
 import BoardModalToggleSlice from "../../redux/BoardModalToggleSlice";
+import BoardModalTypeSlice from "../../redux/BoardModalTypeSlice";
 import sidebarHide from "../../assets/icon-hide-sidebar.svg";
 import sidebarShow from "../../assets/icon-show-sidebar.svg";
 
@@ -25,6 +26,7 @@ const Sidebar = () => {
 
     const boardModalToggleClick = () => {
         dispatch(BoardModalToggleSlice.actions.toggleBoardModal());
+        dispatch(BoardModalTypeSlice.actions.changeAddType());
     }
 
     return (
