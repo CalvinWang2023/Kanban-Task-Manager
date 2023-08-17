@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './Board.css';
 import Header from '../header/Header';
-import AddEditBoardModal from "../../modals/AddEditBoardModal";
+import AddEditBoardModal from "../../modals/addEditBoardModal/AddEditBoardModal";
 import BoardModalToggleSlice from "../../redux/BoardModalToggleSlice";
 import BoardModalTypeSlice from "../../redux/BoardModalTypeSlice";
 

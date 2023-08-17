@@ -1,8 +1,8 @@
 import './AddEditBoardModal.css';
 import { useDispatch, useSelector } from "react-redux";
-import BoardModalToggleSlice from "../redux/BoardModalToggleSlice";
-import BoardsSlice from '../redux/BoardsSlice';
-import cross from '../assets/icon-cross.svg';
+import BoardModalToggleSlice from "../../redux/BoardModalToggleSlice";
+import BoardsSlice from '../../redux/BoardsSlice';
+import cross from '../../assets/icon-cross.svg';
 import { useState, useEffect } from 'react';
 
 const AddEditBoardModal = ({ type }) => {
