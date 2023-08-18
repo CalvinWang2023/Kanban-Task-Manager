@@ -57,16 +57,17 @@ const Sidebar = () => {
                                 )
                             })
                         }
-                        <li 
-                            className="add-board-button"
-                            onClick={ boardModalToggleClick }
-                        >
-                            <button>
-                                <img src={ iconBoard } alt="icon board" className="icon-board" />
-                                <p>+ Create New Board</p>
-                            </button>
-                        </li>
                     </ul>
+                    <div 
+                        className="add-board-button"
+                        onClick={ boardModalToggleClick }
+                    >
+                        <button>
+                            <img src={ iconBoard } alt="icon board" className="icon-board" />
+                            <p>+ Create New Board</p>
+                        </button>
+                    </div>
+                    
                     <div 
                         className={"sidebar-open" }
                         onClick={ sidebarHideClick }

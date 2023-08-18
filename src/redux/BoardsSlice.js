@@ -20,6 +20,60 @@ const BoardsSlice = createSlice({
             activeBoard.name = payload.name;
             activeBoard.columns = payload.newColumns;
         },
+        addTask: (state, action) => {
+            const payload = action.payload;
+            const activeBoard = state[payload.index];
+            const activeColumn = activeBoard.columns[payload.columnIndex]; 
+            const activeTasks = activeColumn.tasks;
+            
+            const task = {
+                title: payload.title,
+                description: payload.description,
+                status: payload.status,
+                subtasks: [],
+            };
+
+            task.subtasks = payload.newSubtasks;
+            activeTasks.push(task);
+        },
+        editTask: (state, action) => {
+            const payload = action.payload;
+            const activeBoard = state[payload.boardIndex];
+            const activeColumn = activeBoard.columns[payload.columnIndex];
+            const activeTasks = activeColumn.tasks;
+            const activeTask = activeTasks[payload.taskIndex];
+
+            activeTask.title = payload.title;
+            activeTask.description = payload.description;
+            activeTask.title = payload.title;
+            activeTask.title = payload.title;
+        },
+        setSubtaskIsCompleted: (state, action) => {
+            const payload = action.payload;
+            const activeBoard = state[payload.boardIndex];
+            const activeColumn = activeBoard.columns[payload.columnIndex];
+            const activeTasks = activeColumn.tasks;
+            const activeTask = activeTasks[payload.taskIndex];
+            const activeSubtasks = activeTask.subtasks;
+            const activeSubtask = activeSubtasks[payload.subtaskIndex];
+
+            activeSubtask.isCompleted = payload.isCompleted;
+        },
+        setTaskStatus: (state, action) => {
+            const payload = action.payload;
+            const activeBoard = state[payload.boardIndex];
+            const activeColumn = activeBoard.columns[payload.columnIndex];
+            const activeTasks = activeColumn.tasks;
+            const activeTask = activeTasks[payload.taskIndex];
+
+            activeTasks.splice(payload.taskIndex, 1);
+
+            const newActiveColumn = activeBoard.columns[payload.statusIndex];
+
+            activeTask.status = newActiveColumn.name;
+
+            newActiveColumn.tasks.push(activeTask);
+        } 
     },
 });
 

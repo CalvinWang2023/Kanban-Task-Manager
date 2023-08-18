@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import './Header.css';
-
 import logo from "../../assets/logo-mobile.svg";
 import chevronUp from '../../assets/icon-chevron-up.svg';
 import chevronDown from '../../assets/icon-chevron-down.svg';

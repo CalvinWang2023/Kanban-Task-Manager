@@ -1,0 +1,158 @@
+.task-modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.modal {
+    border: 1px var(--text-color) solid;
+    background-color: white;
+    box-shadow: 1px 1px 1px var(--text-color);
+    border-radius: 20px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 25px;
+    
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+.modal .task-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 440px;
+}
+
+.modal .task-header h1 {
+    font-size: 1.15rem;
+}
+
+.modal .description {
+    width: 440px;
+}
+
+.modal .description p {
+    font-size: .8rem;
+    font-weight: 500;
+    color: var(--sidebar-color);
+    line-height: 1.6;
+}
+
+.modal .subtasks .subtask-title {
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--sidebar-color);
+    margin-bottom: 16px;
+}
+
+.modal .subtasks .subtask-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.modal .subtasks .subtask-list .subtask {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+
+    padding: 18px;
+    background-color: var(--board-bg-color);
+    border: 1px var(--sidebar-hover-color) solid;
+    border-radius: 5px;
+    width: 440px;
+
+    cursor: pointer;
+}
+
+.modal .subtasks .subtask-list .subtask input {
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+}
+
+.modal .subtasks .subtask-list .subtask input:checked {
+    accent-color: var(--button-color);
+}
+
+.modal .subtasks .subtask-list .subtask:hover {
+    background-color: var(--sidebar-hover-color);
+}
+
+.modal .subtasks .subtask-list .subtask .unchecked {
+    font-weight: 700;
+    font-size: .8rem;
+}
+
+.modal .subtasks .subtask-list .subtask .checked {
+    font-weight: 700;
+    font-size: .8rem;
+
+    color: var(--sidebar-color);
+    text-decoration: line-through;
+}
+
+.modal .status .status-title {
+    font-weight: 700;
+    font-size: .8rem;
+    color: var(--sidebar-color);
+    margin-bottom: 16px;
+}
+
+.modal .status .status-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 440px;
+    padding: 16px;
+    border-radius: 5px;
+    border: 1px var(--board-bg-color) solid;
+    cursor: pointer;
+}
+
+.modal .status .status-content:hover {
+    border-color: var(--button-color);
+}
+
+.modal .status .status-content p {
+    font-weight: 700;
+    font-size: .85rem;
+}
+
+.modal .status ul {
+    list-style: none;
+
+    margin-top: 16px;
+}
+
+.modal .status ul li {
+    padding: 16px;
+
+    cursor: pointer;
+}
+
+.modal .status ul li p {
+    font-weight: 700;
+    font-size: .85rem;
+    color: var(--sidebar-color);
+}
+
+.modal .status ul li:hover p {
+    color: var(--black-text-color);
+}

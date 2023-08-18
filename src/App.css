@@ -13,7 +13,8 @@
     --hover-color: rgb(157, 157, 230);
     --text-color: #ffffff;
     --sidebar-color: rgb(123, 120, 120);
-    --sidebar-hover-color: rgb(214, 214, 225);
+    --sidebar-hover-color: rgb(225, 225, 242);
+    --new-column-color: rgb(216, 216, 230);
     --board-bg-color: #e4e7ee;
     --black-text-color: black;
 }

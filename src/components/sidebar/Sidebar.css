@@ -41,7 +41,7 @@
     background-color: var(--button-color);
     width: 55px;
 
-    transition: .3s;
+    /* transition: .3s; */
     cursor: pointer;
 }
 .sidebar-hide:hover {
@@ -63,7 +63,7 @@
     border-bottom-right-radius: 40px;
     border-top-right-radius: 40px;
 
-    transition: .3s;
+    /* transition: .3s; */
     cursor: pointer;
 }
 .sidebar-container .sidebar-open:hover {
@@ -80,6 +80,9 @@
     display: flex;
     flex-direction: column;
     width: 260px; 
+
+    overflow-y: scroll;
+    max-height: 390px;
 }
 
 .sidebar-container ul .board-section {
@@ -94,10 +97,10 @@
 
     font-size: 1rem;
     cursor: pointer;
-    transition: .3s;
+    /* transition: .3s; */
 }
 
-.sidebar-container ul .add-board-button button {
+.sidebar-container .add-board-button button {
     width: 260px;
     display: flex;
     flex-direction: row;
@@ -114,18 +117,18 @@
 
     font-size: 1rem;
     cursor: pointer;
-    transition: .3s; 
+    /* transition: .3s;  */
 }
 
-.sidebar-container ul .add-board-button button p {
+.sidebar-container .add-board-button button p {
     font-weight: 700;
 }
 
-.sidebar-container ul .add-board-button button img {
+.sidebar-container .add-board-button button img {
     filter: invert(56%) sepia(58%) saturate(5507%) hue-rotate(220deg) brightness(88%) contrast(77%); 
 }
 
-.sidebar-container ul .add-board-button button:hover {
+.sidebar-container .add-board-button button:hover {
     background-color: var(--sidebar-hover-color);
 }
 

@@ -8,7 +8,9 @@
     bottom: 0;
     left: 0;
     right: 0;
+}
 
+.dimmed {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -30,7 +32,7 @@
 }
 
 .modal-container .modal .title {
-    font-size: .7rem;;
+    font-size: .7rem;
 }
 
 .modal-container .modal label {
@@ -47,7 +49,7 @@
 }
 
 .modal-container .modal input:hover {
-    border-color: var(--button-color); /* Change this to the desired hover color */
+    border-color: var(--button-color); 
 }
 
 .modal-container .modal .board-name-input {
@@ -118,18 +120,4 @@
 
 .modal-container .modal .create-board-button p {
     color: var(--text-color);
-}
-
-
-::-webkit-scrollbar {
-    max-width: 0.4rem;
-}
-
-::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: var(--button-color);
-    border-radius: 5px;
 }

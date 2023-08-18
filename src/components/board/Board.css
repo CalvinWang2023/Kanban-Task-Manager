@@ -1,7 +1,7 @@
 .board-container {
     display: flex;
     flex-direction: column;
-    margin-left: 300px;
+    margin-left: 285px;
     min-height: 100vh;
     min-width: 100vh;
     border-left: 1.5px var(--sidebar-hover-color) solid;
@@ -36,7 +36,7 @@
     height: 100%;
     width: 290px;
     border: none;
-    background-color: var(--sidebar-hover-color);
+    background-color: var(--new-column-color);
     font-size: 1.25rem;
     color: var(--sidebar-color);
     cursor: pointer;
