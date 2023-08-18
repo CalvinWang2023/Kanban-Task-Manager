@@ -50,7 +50,6 @@ const AddEditBoardModal = ({ type }) => {
             setBoardName(activeBoard.name);
             setColumns(activeBoard.columns);
         }
-        console.log('koniqiwa');
     }, []);
 
     return (
