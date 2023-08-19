@@ -22,7 +22,7 @@ const BoardsSlice = createSlice({
         },
         addTask: (state, action) => {
             const payload = action.payload;
-            const activeBoard = state[payload.index];
+            const activeBoard = state[payload.boardIndex];
             const activeColumn = activeBoard.columns[payload.columnIndex]; 
             const activeTasks = activeColumn.tasks;
             
@@ -45,8 +45,8 @@ const BoardsSlice = createSlice({
 
             activeTask.title = payload.title;
             activeTask.description = payload.description;
-            activeTask.title = payload.title;
-            activeTask.title = payload.title;
+            activeTask.status = payload.status;
+            activeTask.subtasks = payload.subtasks;
         },
         setSubtaskIsCompleted: (state, action) => {
             const payload = action.payload;

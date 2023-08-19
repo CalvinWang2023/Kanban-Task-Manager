@@ -1,4 +1,4 @@
-.modal-container {
+.addedit-board-modal-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,7 +14,7 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-container .modal {
+.addedit-board-modal-container .modal {
     border: 1px var(--text-color) solid;
     background-color: white;
     box-shadow: 1px 1px 1px var(--text-color);
@@ -31,59 +31,59 @@
     overflow-y: scroll;
 }
 
-.modal-container .modal .title {
+.addedit-board-modal-container .modal .title {
     font-size: .7rem;
 }
 
-.modal-container .modal label {
+.addedit-board-modal-container .modal label {
     color: var(--sidebar-color);
     font-weight: 700;
     font-size: .9rem
 }
 
-.modal-container .modal input {
+.addedit-board-modal-container .modal input {
     padding: 15px;
     border-radius: 5px;
     border: 1px var(--sidebar-hover-color) solid;
     outline-color: var(--button-color);
 }
 
-.modal-container .modal input:hover {
+.addedit-board-modal-container .modal input:hover {
     border-color: var(--button-color); 
 }
 
-.modal-container .modal .board-name-input {
+.addedit-board-modal-container .modal .board-name-input {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 500px;
 }
 
-.modal-container .modal .board-column-input {
+.addedit-board-modal-container .modal .board-column-input {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.modal-container .modal .board-column-input .column-task {
+.addedit-board-modal-container .modal .board-column-input .column-task {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     width: 500px;
 }
-.modal-container .modal .board-column-input .column-task img {
+.addedit-board-modal-container .modal .board-column-input .column-task img {
     cursor: pointer;
 }
-.modal-container .modal .board-column-input .column-task img:hover {
+.addedit-board-modal-container .modal .board-column-input .column-task img:hover {
     filter: invert(13%) sepia(85%) saturate(6367%) hue-rotate(7deg) brightness(92%) contrast(130%);
 }
 
-.modal-container .modal .board-column-input .column-task input {
+.addedit-board-modal-container .modal .board-column-input .column-task input {
     width: 475px;
 }
 
-.modal-container .modal button {
+.addedit-board-modal-container .modal button {
     width: 500px;
     padding: 15px;
     border-radius: 25px;
@@ -92,32 +92,32 @@
     transition: .3s;
 }
 
-.modal-container .modal button p {
+.addedit-board-modal-container .modal button p {
     font-weight: 700;
     font-size: .9rem;
 }
 
-.modal-container .modal .create-column-button {
+.addedit-board-modal-container .modal .create-column-button {
     background-color: var(--board-bg-color);
 }
-.modal-container .modal .create-column-button:hover {
+.addedit-board-modal-container .modal .create-column-button:hover {
     background-color: var(--hover-color);   
 }
-.modal-container .modal .create-column-button:hover p {
+.addedit-board-modal-container .modal .create-column-button:hover p {
     color: var(--text-color);
 }
 
-.modal-container .modal .create-board-button {
+.addedit-board-modal-container .modal .create-board-button {
     background-color: var(--button-color);
 }
-.modal-container .modal .create-board-button:hover {
+.addedit-board-modal-container .modal .create-board-button:hover {
     background-color: var(--hover-color);
 }
 
-.modal-container .modal .create-column-button p {
+.addedit-board-modal-container .modal .create-column-button p {
     color: var(--button-color);
 }
 
-.modal-container .modal .create-board-button p {
+.addedit-board-modal-container .modal .create-board-button p {
     color: var(--text-color);
 }

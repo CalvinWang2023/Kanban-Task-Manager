@@ -7,14 +7,18 @@ import './TaskModal.css';
 import { useState } from "react";
 import { useEffect } from "react";
 import BoardsSlice from "../../redux/BoardsSlice";
+import AddEditTaskModalToggleSlice from "../../redux/AddEditTaskModalToggleSlice";
+import AddEditTaskModalTypeSlice from "../../redux/AddEditTaskModalTypeSlice";
 
-const TaskModal = ({ columnIndex, taskIndex }) => {
+const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
     const dispatch = useDispatch();
     const boards = useSelector((state) => state.boards);
     const activeBoardIndex = useSelector((state) => state.activeBoardIndex);
     const activeBoard = boards[activeBoardIndex];
     const [completedTasksCount, setCompletedTasksCount] = useState(0);
     const [statusUnfolded, setStatusUnfolded] = useState(true);
+    const [columnIndex, setColumnIndex] = useState(currentColumnIndex);
+    const [taskIndex, setTaskIndex] = useState(currentTaskIndex);
 
     const board = {
         name: activeBoard.columns[columnIndex].tasks[taskIndex].title,
@@ -22,7 +26,6 @@ const TaskModal = ({ columnIndex, taskIndex }) => {
         status: activeBoard.columns[columnIndex].name,
         subtasks: activeBoard.columns[columnIndex].tasks[taskIndex].subtasks
     }
-
 
     const completedTasks = board.subtasks.filter((subtask) => subtask.isCompleted === true);
     const completedTasksNum = completedTasks.length;
@@ -33,17 +36,26 @@ const TaskModal = ({ columnIndex, taskIndex }) => {
 
     const checkboxOnChangeHandler = (boardIndex, columnIndex, taskIndex, subtaskIndex, isCompleted) => {
         dispatch(BoardsSlice.actions.setSubtaskIsCompleted({ boardIndex: boardIndex, 
-                                                columnIndex: columnIndex,
-                                                taskIndex: taskIndex,
-                                                subtaskIndex: subtaskIndex,
-                                                isCompleted: isCompleted }));
+                                                                columnIndex: columnIndex,
+                                                                taskIndex: taskIndex,
+                                                                subtaskIndex: subtaskIndex,
+                                                                isCompleted: isCompleted }));
     }
 
     const statusChangeClick = (boardIndex, columnIndex, taskIndex, statusIndex) => {
-         dispatch(BoardsSlice.actions.setTaskStatus({ boardIndex: boardIndex, 
-                                                columnIndex: columnIndex,
-                                                taskIndex: taskIndex,
-                                                statusIndex: statusIndex }));       
+        setStatusUnfolded(!statusUnfolded);
+        dispatch(BoardsSlice.actions.setTaskStatus({ boardIndex: boardIndex, 
+                                                        columnIndex: columnIndex,
+                                                        taskIndex: taskIndex,
+                                                        statusIndex: statusIndex })); 
+        setColumnIndex(statusIndex);
+        setTaskIndex(activeBoard.columns[statusIndex].tasks.length);      
+    }
+
+    const addEditTaskModalToggleClick = () => {
+        taskModalToggleClick();
+        dispatch(AddEditTaskModalToggleSlice.actions.toggleAddEditTaskModal());
+        dispatch(AddEditTaskModalTypeSlice.actions.changeEditType());
     }
 
     useEffect(() => {
@@ -63,7 +75,7 @@ const TaskModal = ({ columnIndex, taskIndex }) => {
             <div className="modal">
                 <div className="task-header">
                     <h1>{ board.name }</h1>
-                    <img src={ ellipsis } alt="ellipsis icon" />
+                    <img src={ ellipsis } alt="ellipsis icon" onClick={ addEditTaskModalToggleClick } />
                 </div>
                 <div className="description">
                     <p>{ board.description }</p>
@@ -120,19 +132,19 @@ const TaskModal = ({ columnIndex, taskIndex }) => {
                         />
                     </div>
                     <ul>
-                            {
-                                !statusUnfolded &&
-                                activeBoard.columns.map((column, statusIndex) => {
-                                    return (
-                                        <li 
-                                            key={ statusIndex }
-                                            onClick={() => statusChangeClick(activeBoardIndex, columnIndex, taskIndex, statusIndex)}
-                                        >
-                                            <p>{ column.name }</p>
-                                        </li>
-                                    )
-                                })
-                            }
+                        {
+                            !statusUnfolded &&
+                            activeBoard.columns.map((column, statusIndex) => {
+                                return (
+                                    <li 
+                                        key={ statusIndex }
+                                        onClick={() => statusChangeClick(activeBoardIndex, columnIndex, taskIndex, statusIndex)}
+                                    >
+                                        <p>{ column.name }</p>
+                                    </li>
+                                )
+                            })
+                        }
                     </ul>
                 </div>
             </div>

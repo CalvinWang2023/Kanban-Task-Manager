@@ -10,7 +10,7 @@
     right: 0;
 }
 
-.modal {
+.task-modal-container .modal {
     border: 1px var(--text-color) solid;
     background-color: white;
     box-shadow: 1px 1px 1px var(--text-color);
@@ -27,7 +27,7 @@
     overflow-y: scroll;
 }
 
-.modal .task-header {
+.task-modal-container .modal .task-header {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -36,36 +36,40 @@
     width: 440px;
 }
 
-.modal .task-header h1 {
+.task-modal-container .modal .task-header h1 {
     font-size: 1.15rem;
 }
 
-.modal .description {
+.task-modal-container .modal .task-header img {
+    cursor: pointer;
+}
+
+.task-modal-container .modal .description {
     width: 440px;
 }
 
-.modal .description p {
+.task-modal-container .modal .description p {
     font-size: .8rem;
     font-weight: 500;
     color: var(--sidebar-color);
     line-height: 1.6;
 }
 
-.modal .subtasks .subtask-title {
+.task-modal-container .modal .subtasks .subtask-title {
     font-size: .8rem;
     font-weight: 700;
     color: var(--sidebar-color);
     margin-bottom: 16px;
 }
 
-.modal .subtasks .subtask-list {
+.task-modal-container .modal .subtasks .subtask-list {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
 }
 
-.modal .subtasks .subtask-list .subtask {
+.task-modal-container .modal .subtasks .subtask-list .subtask {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -80,26 +84,26 @@
     cursor: pointer;
 }
 
-.modal .subtasks .subtask-list .subtask input {
+.task-modal-container .modal .subtasks .subtask-list .subtask input {
     cursor: pointer;
     height: 16px;
     width: 16px;
 }
 
-.modal .subtasks .subtask-list .subtask input:checked {
+.task-modal-container .modal .subtasks .subtask-list .subtask input:checked {
     accent-color: var(--button-color);
 }
 
-.modal .subtasks .subtask-list .subtask:hover {
+.task-modal-container .modal .subtasks .subtask-list .subtask:hover {
     background-color: var(--sidebar-hover-color);
 }
 
-.modal .subtasks .subtask-list .subtask .unchecked {
+.task-modal-container .modal .subtasks .subtask-list .subtask .unchecked {
     font-weight: 700;
     font-size: .8rem;
 }
 
-.modal .subtasks .subtask-list .subtask .checked {
+.task-modal-container .modal .subtasks .subtask-list .subtask .checked {
     font-weight: 700;
     font-size: .8rem;
 
@@ -107,14 +111,14 @@
     text-decoration: line-through;
 }
 
-.modal .status .status-title {
+.task-modal-container .modal .status .status-title {
     font-weight: 700;
     font-size: .8rem;
     color: var(--sidebar-color);
     margin-bottom: 16px;
 }
 
-.modal .status .status-content {
+.task-modal-container .modal .status .status-content {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -126,33 +130,32 @@
     cursor: pointer;
 }
 
-.modal .status .status-content:hover {
+.task-modal-container .modal .status .status-content:hover {
     border-color: var(--button-color);
 }
 
-.modal .status .status-content p {
+.task-modal-container .modal .status .status-content p {
     font-weight: 700;
     font-size: .85rem;
 }
 
-.modal .status ul {
+.task-modal-container .modal .status ul {
     list-style: none;
-
     margin-top: 16px;
 }
 
-.modal .status ul li {
+.task-modal-container .modal .status ul li {
     padding: 16px;
 
     cursor: pointer;
 }
 
-.modal .status ul li p {
+.task-modal-container .modal .status ul li p {
     font-weight: 700;
     font-size: .85rem;
     color: var(--sidebar-color);
 }
 
-.modal .status ul li:hover p {
+.task-modal-container .modal .status ul li:hover p {
     color: var(--black-text-color);
 }

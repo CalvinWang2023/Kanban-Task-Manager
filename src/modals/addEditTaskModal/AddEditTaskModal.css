@@ -1,0 +1,184 @@
+.addedit-task-modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.addedit-task-modal-container .modal {
+    border: 1px var(--text-color) solid;
+    background-color: white;
+    box-shadow: 1px 1px 1px var(--text-color);
+    border-radius: 20px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 25px;
+    
+    max-height: 700px;
+    overflow-y: scroll;
+}
+
+.addedit-task-modal-container .modal .title {
+    font-size: .7rem;
+}
+
+.addedit-task-modal-container .modal label {
+    color: var(--sidebar-color);
+    font-weight: 700;
+    font-size: .9rem
+}
+
+.addedit-task-modal-container .modal input,
+.addedit-task-modal-container .modal textarea {
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px var(--sidebar-hover-color) solid;
+    outline-color: var(--button-color);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 500;
+}
+
+.addedit-task-modal-container .modal input:hover,
+.addedit-task-modal-container .modal textarea:hover {
+    border-color: var(--button-color); 
+}
+
+.addedit-task-modal-container .modal .task-name-input,
+.addedit-task-modal-container .modal .task-description-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 500px;
+}
+
+/***********************************SUBTASK***************************************/
+
+
+.addedit-task-modal-container .modal .subtasks-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.addedit-task-modal-container .modal .subtasks-input .subtasks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+}
+.addedit-task-modal-container .modal .subtasks-input .subtasks img {
+    cursor: pointer;
+}
+.addedit-task-modal-container .modal .subtasks-input .subtasks img:hover {
+    filter: invert(13%) sepia(85%) saturate(6367%) hue-rotate(7deg) brightness(92%) contrast(130%);
+}
+
+.addedit-task-modal-container .modal .subtasks-input .subtasks input {
+    width: 475px;
+}
+
+.addedit-task-modal-container .modal button {
+    width: 500px;
+    padding: 15px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.addedit-task-modal-container .modal button p {
+    font-weight: 700;
+    font-size: .9rem;
+}
+
+.addedit-task-modal-container .modal .create-subtask-button {
+    background-color: var(--board-bg-color);
+}
+.addedit-task-modal-container .modal .create-subtask-button:hover {
+    background-color: var(--hover-color);   
+}
+.addedit-task-modal-container .modal .create-subtask-button:hover p {
+    color: var(--text-color);
+}
+
+.addedit-task-modal-container .modal .create-task-button {
+    background-color: var(--button-color);
+}
+.addedit-task-modal-container .modal .create-task-button:hover {
+    background-color: var(--hover-color);
+}
+
+.addedit-task-modal-container .modal .create-subtask-button p {
+    color: var(--button-color);
+}
+
+.addedit-task-modal-container .modal .create-task-button p {
+    color: var(--text-color);
+}
+
+
+
+/********************************  STATUS   ****************************************/
+
+
+
+.addedit-task-modal-container .modal .status .status-title {
+    font-weight: 700;
+    font-size: .8rem;
+    color: var(--sidebar-color);
+    margin-bottom: 16px;
+}
+
+.addedit-task-modal-container .modal .status .status-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+    padding: 16px;
+    border-radius: 5px;
+    border: 1px var(--board-bg-color) solid;
+    cursor: pointer;
+}
+
+.addedit-task-modal-container .modal .status .status-content:hover {
+    border-color: var(--button-color);
+}
+
+.addedit-task-modal-container .modal .status .status-content p {
+    font-weight: 700;
+    font-size: .85rem;
+}
+
+.addedit-task-modal-container .modal .status ul {
+    list-style: none;
+    margin-top: 16px;
+}
+
+.addedit-task-modal-container .modal .status ul li {
+    padding: 16px;
+
+    cursor: pointer;
+}
+
+.addedit-task-modal-container .modal .status ul li p {
+    font-weight: 700;
+    font-size: .85rem;
+    color: var(--sidebar-color);
+}
+
+.addedit-task-modal-container .modal .status ul li:hover p {
+    color: var(--black-text-color);
+}
+
+

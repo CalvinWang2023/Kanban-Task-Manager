@@ -54,7 +54,7 @@ const AddEditBoardModal = ({ type }) => {
 
     return (
         <div 
-            className="modal-container dimmed"
+            className="addedit-board-modal-container dimmed"
             onClick={(e) => {
                 if (e.target !== e.currentTarget) {
                     return;
