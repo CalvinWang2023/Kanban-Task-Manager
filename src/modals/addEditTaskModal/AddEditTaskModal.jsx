@@ -19,6 +19,7 @@ const AddEditTaskModal = ({ type, columnIndex, taskIndex }) => {
     const [taskDescription, setTaskDescription] = useState('');
     const [subtasks, setSubtasks] = useState([{ title: '', isCompleted: false }, { title: '', isCompleted: false }]);
     const [statusIndex, setStatusIndex] = useState(0);
+    const [originalStatusIndex, setOriginalStatusIndex] = useState();
 
     const addEditTaskModalToggleClick = () => {
         dispatch(AddEditTaskModalToggleSlice.actions.toggleAddEditTaskModal());
@@ -53,7 +54,9 @@ const AddEditTaskModal = ({ type, columnIndex, taskIndex }) => {
                     description: taskDescription,
                     status: activeBoard.columns[statusIndex].name,
                     subtasks: newSubtasks }));
-        statusChangeClick(activeBoardIndex, columnIndex, taskIndex, statusIndex);
+        if (originalStatusIndex !== statusIndex) {
+            statusChangeClick(activeBoardIndex, columnIndex, taskIndex, statusIndex);
+        }
     }
 
     const createSubtaskClick = () => {
@@ -79,6 +82,7 @@ const AddEditTaskModal = ({ type, columnIndex, taskIndex }) => {
             setTaskDescription(activeTask.description);
             setSubtasks(activeTask.subtasks);
             setStatusIndex(columnIndex);
+            setOriginalStatusIndex(columnIndex);
         }
     }, []);
 
@@ -172,7 +176,7 @@ const AddEditTaskModal = ({ type, columnIndex, taskIndex }) => {
                                     <li 
                                         key={ index }
                                         onClick={() => {
-                                                setStatusIndex(index);
+                                                setStatusIndex(index);       
                                                 setStatusUnfolded(!statusUnfolded);
                                             }
                                         }
