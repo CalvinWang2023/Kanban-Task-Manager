@@ -9,6 +9,10 @@ import addSign from '../../assets/icon-add-task-mobile.svg';
 import { useSelector, useDispatch } from "react-redux";
 import AddEditTaskModalToggleSlice from "../../redux/AddEditTaskModalToggleSlice";
 import AddEditTaskModalTypeSlice from "../../redux/AddEditTaskModalTypeSlice";
+import BoardModalToggleSlice from "../../redux/BoardModalToggleSlice";
+import BoardModalTypeSlice from "../../redux/BoardModalTypeSlice";
+import DeleteModalToggleSlice from "../../redux/DeleteModalToggleSlice";
+import DeleteModalTypeSlice from "../../redux/DeleteModalTypeSlice";
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -18,10 +22,23 @@ const Header = () => {
     const activeBoardIndex = useSelector((state) => state.activeBoardIndex); 
     const activeBoard = boards[activeBoardIndex];
     const sidebarToggle = useSelector((state) => state.sidebarToggle);
+    const [isEllipsisMenuOpen, setIsEllipsisMenuOpen] = useState(false);
 
     const addEditTaskModalToggleClick = () => {
         dispatch(AddEditTaskModalToggleSlice.actions.toggleAddEditTaskModal());
         dispatch(AddEditTaskModalTypeSlice.actions.changeAddType());
+    }
+
+    const boardModalToggleClick = () => {
+        setIsEllipsisMenuOpen(!isEllipsisMenuOpen);
+        dispatch(BoardModalToggleSlice.actions.toggleBoardModal());
+        dispatch(BoardModalTypeSlice.actions.changeEditType());
+    }
+
+    const deleteModalToggleClick = () => {
+        setIsEllipsisMenuOpen(!isEllipsisMenuOpen);
+        dispatch(DeleteModalToggleSlice.actions.toggledeleteModal());
+        dispatch(DeleteModalTypeSlice.actions.changeBoardType());
     }
 
     return (
@@ -51,10 +68,31 @@ const Header = () => {
                         }
                     </button>
                     <div className="ellipsis">
-                        <img src={ ellipsis } alt="ellipsis menu" />
+                        <img 
+                            src={ ellipsis } 
+                            alt="ellipsis menu" 
+                            onClick={ () => setIsEllipsisMenuOpen(!isEllipsisMenuOpen) }
+                        />
                     </div>
                 </div>
             </header>
+            {
+                isEllipsisMenuOpen &&
+                <div className="ellipsis-menu">
+                    <button 
+                        className="edit"
+                        onClick={ boardModalToggleClick }
+                    >
+                        <p>Edit Board</p>
+                    </button>
+                    <button 
+                        className="delete"
+                        onClick={ deleteModalToggleClick }
+                    >
+                        <p>Delete Board</p>
+                    </button>
+                </div>
+            }
        </div> 
     )
 }

@@ -6,6 +6,7 @@ import AddEditTaskModal from '../../modals/addEditTaskModal/AddEditTaskModal';
 import BoardModalToggleSlice from "../../redux/BoardModalToggleSlice";
 import TaskModalToggleSlice from '../../redux/TaskModalToggleSlice';
 import BoardModalTypeSlice from "../../redux/BoardModalTypeSlice";
+import DeleteModal from '../../modals/deleteModal/DeleteModal';
 import { useState } from 'react';
 
 const Board = () => {
@@ -17,6 +18,8 @@ const Board = () => {
     const activeBoardIndex = useSelector((state) => state.activeBoardIndex);
     const boardModalType = useSelector((state) => state.boardModalType);
     const addEditTaskModalType = useSelector((state) => state.addEditTaskModalType);
+    const deleteModalToggle = useSelector((state) => state.deleteModalToggle);
+    const deleteModalType = useSelector((state) => state.deleteModalType);
     const activeBoard = boards[activeBoardIndex];
     const [columnIndex, setColumnIndex] = useState();
     const [taskIndex, setTaskIndex] = useState();
@@ -104,9 +107,10 @@ const Board = () => {
                 </ul>
             </div>
 
-            { boardModalToggle && (<AddEditBoardModal type={ boardModalType } />) }
+            { boardModalToggle && <AddEditBoardModal type={ boardModalType } /> }
             { taskModalToggle && <TaskModal currentColumnIndex={ columnIndex } currentTaskIndex={ taskIndex } /> }
             { AddEditTaskModalToggle && <AddEditTaskModal type={ addEditTaskModalType } columnIndex={ columnIndex } taskIndex={ taskIndex }  /> } 
+            { deleteModalToggle && <DeleteModal type={ deleteModalType } columnIndex={ columnIndex } taskIndex={ taskIndex } /> }
         </>
     )
 }

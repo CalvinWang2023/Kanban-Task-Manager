@@ -17,8 +17,10 @@
     --new-column-color: rgb(216, 216, 230);
     --board-bg-color: #e4e7ee;
     --black-text-color: black;
-
     --card-shadow-color: rgb(183, 177, 177);
+    --delete-color: #ea5555;
+    --delete-hover-color: #b84d4d;
+    --cancel-hover-color: #c0c4cb;
 }
 
 body {

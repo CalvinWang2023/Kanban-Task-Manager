@@ -1,0 +1,76 @@
+.delete-modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.delete-modal-container .modal {
+    border: 1px var(--text-color) solid;
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 25px;
+}
+
+.delete-modal-container .modal .title h1 {
+    color: var(--delete-color);
+    font-size: 1.15rem;
+}
+
+.delete-modal-container .modal .content {
+    width: 500px;
+}
+.delete-modal-container .modal .content p {
+    color: var(--sidebar-color);
+    font-weight: 500;
+    font-size: .9rem;
+    line-height: 1.6;
+}
+
+.delete-modal-container .modal .button-choices {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+}
+
+.delete-modal-container .modal .button-choices button {
+    border: none;
+    
+    width: 500px;
+    padding: 12px 0;
+
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.delete-modal-container .modal .button-choices .delete {
+    background-color: var(--delete-color);
+    color: var(--text-color);
+    font-weight: 700;
+}
+.delete-modal-container .modal .button-choices .delete:hover {
+    background-color: var(--delete-hover-color);
+}
+
+.delete-modal-container .modal .button-choices .cancel {
+    background-color: var(--board-bg-color);
+    color: var(--button-color);
+    font-weight: 700;
+}
+.delete-modal-container .modal .button-choices .cancel:hover {
+    background-color: var(--cancel-hover-color);
+}

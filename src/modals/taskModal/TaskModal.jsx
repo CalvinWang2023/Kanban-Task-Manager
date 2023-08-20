@@ -9,6 +9,8 @@ import { useEffect } from "react";
 import BoardsSlice from "../../redux/BoardsSlice";
 import AddEditTaskModalToggleSlice from "../../redux/AddEditTaskModalToggleSlice";
 import AddEditTaskModalTypeSlice from "../../redux/AddEditTaskModalTypeSlice";
+import DeleteModalToggleSlice from "../../redux/DeleteModalToggleSlice";
+import DeleteModalTypeSlice from "../../redux/DeleteModalTypeSlice";
 
 const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
     const dispatch = useDispatch();
@@ -19,6 +21,7 @@ const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
     const [statusUnfolded, setStatusUnfolded] = useState(true);
     const [columnIndex, setColumnIndex] = useState(currentColumnIndex);
     const [taskIndex, setTaskIndex] = useState(currentTaskIndex);
+    const [isEllipsisMenuOpen, setIsEllipsisMenuOpen] = useState(false);
 
     const board = {
         name: activeBoard.columns[columnIndex].tasks[taskIndex].title,
@@ -32,6 +35,7 @@ const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
 
     const taskModalToggleClick = () => {
         dispatch(TaskModalToggleSlice.actions.toggleTaskModal());
+        setIsEllipsisMenuOpen(false);
     }
 
     const checkboxOnChangeHandler = (boardIndex, columnIndex, taskIndex, subtaskIndex, isCompleted) => {
@@ -53,9 +57,17 @@ const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
     }
 
     const addEditTaskModalToggleClick = () => {
+        setIsEllipsisMenuOpen(false);
         taskModalToggleClick();
         dispatch(AddEditTaskModalToggleSlice.actions.toggleAddEditTaskModal());
         dispatch(AddEditTaskModalTypeSlice.actions.changeEditType());
+    }
+
+    const deleteModalToggleClick = () => {
+        setIsEllipsisMenuOpen(false);
+        taskModalToggleClick();
+        dispatch(DeleteModalToggleSlice.actions.toggledeleteModal());
+        dispatch(DeleteModalTypeSlice.actions.changeTaskType());
     }
 
     useEffect(() => {
@@ -75,7 +87,30 @@ const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
             <div className="modal">
                 <div className="task-header">
                     <h1>{ board.name }</h1>
-                    <img src={ ellipsis } alt="ellipsis icon" onClick={ addEditTaskModalToggleClick } />
+                    <div className="ellipsis">
+                        <img 
+                            src={ ellipsis } 
+                            alt="ellipsis icon" 
+                            onClick={ () => setIsEllipsisMenuOpen(!isEllipsisMenuOpen) } 
+                        />
+                        {
+                            isEllipsisMenuOpen &&
+                            <div className="ellipsis-menu">
+                                <button 
+                                    className="edit"
+                                    onClick={ addEditTaskModalToggleClick }
+                                >
+                                    <p>Edit Board</p>
+                                </button>
+                                <button 
+                                    className="delete"
+                                    onClick={ deleteModalToggleClick }
+                                >
+                                    <p>Delete Board</p>
+                                </button>
+                            </div>
+                        }
+                    </div>
                 </div>
                 <div className="description">
                     <p>{ board.description }</p>

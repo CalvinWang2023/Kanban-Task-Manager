@@ -7,6 +7,8 @@ import BoardModalTypeSlice from "./BoardModalTypeSlice";
 import TaskModalToggleSlice from "./TaskModalToggleSlice";
 import AddEditTaskModalToggleSlice from "./AddEditTaskModalToggleSlice";
 import AddEditTaskModalTypeSlice from "./AddEditTaskModalTypeSlice";
+import DeleteModalToggleSlice from "./DeleteModalToggleSlice";
+import DeleteModalTypeSlice from "./DeleteModalTypeSlice";
 
 const store = configureStore({
     reducer: {
@@ -16,8 +18,10 @@ const store = configureStore({
         boardModalToggle: BoardModalToggleSlice.reducer,
         taskModalToggle: TaskModalToggleSlice.reducer,
         addEditTaskModalToggle: AddEditTaskModalToggleSlice.reducer,
+        deleteModalToggle: DeleteModalToggleSlice.reducer,
         boardModalType: BoardModalTypeSlice.reducer,
-        addEditTaskModalType: AddEditTaskModalTypeSlice.reducer
+        addEditTaskModalType: AddEditTaskModalTypeSlice.reducer,
+        deleteModalType: DeleteModalTypeSlice.reducer
     }
 });
 

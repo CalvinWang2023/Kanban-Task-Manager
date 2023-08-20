@@ -14,8 +14,7 @@
 .addedit-task-modal-container .modal {
     border: 1px var(--text-color) solid;
     background-color: white;
-    box-shadow: 1px 1px 1px var(--text-color);
-    border-radius: 20px;
+    border-radius: 8px;
     padding: 30px;
 
     display: flex;
