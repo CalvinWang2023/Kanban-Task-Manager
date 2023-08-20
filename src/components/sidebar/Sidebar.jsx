@@ -29,15 +29,11 @@ const Sidebar = () => {
         dispatch(BoardModalTypeSlice.actions.changeAddType());
     }
 
-    return (
-        <>
+    return (            
+        <div className={ !sidebarToggle ? "sidebar-container" : "closed" }>
             {
                 !sidebarToggle &&
-                <div className="sidebar-container">
-                    <div className="logo-container">
-                        <img src={ logo } alt="logo" />
-                        <h3 className="logo-text">kanban</h3>
-                    </div>
+                <div className="container">
                     <div className="summary">
                         <p>ALL BOARDS ({boards.length})</p>
                     </div>
@@ -51,42 +47,41 @@ const Sidebar = () => {
                                         className={activeBoard === index ? "board-section active-board" : "board-section"}
                                         onClick={() => changeBoardClick(index)}
                                     >
-                                        <img src={ iconBoard } alt="icon board" />
+                                        <img src={iconBoard} alt="icon board" />
                                         <p>{board.name}</p>
                                     </li>
                                 )
                             })
                         }
                     </ul>
-                    <div 
+                    <div
                         className="add-board-button"
-                        onClick={ boardModalToggleClick }
+                        onClick={boardModalToggleClick}
                     >
                         <button>
-                            <img src={ iconBoard } alt="icon board" className="icon-board" />
+                            <img src={iconBoard} alt="icon board" className="icon-board" />
                             <p>+ Create New Board</p>
                         </button>
                     </div>
-                    
-                    <div 
-                        className={"sidebar-open" }
-                        onClick={ sidebarHideClick }
+                    <div
+                        className="sidebar-hide"
+                        onClick={sidebarHideClick}
                     >
-                        <img src={ sidebarHide } alt="show sidebar icon" />
+                        <img src={sidebarHide} alt="hide sidebar icon" />
                         <p>Hide Sidebar</p>
                     </div>
                 </div>
             }
             {
                 sidebarToggle &&
-                <div 
-                    className="sidebar-hide"
-                    onClick={ sidebarHideClick }
+                <div
+                    className="sidebar-open"
+                    onClick={sidebarHideClick}
                 >
-                    <img src={ sidebarShow } alt="hide sidebar icon" />
+                    <img src={sidebarShow} alt="show sidebar icon" />
                 </div>
             }
-        </>
+        </div>
     )
 }
 
