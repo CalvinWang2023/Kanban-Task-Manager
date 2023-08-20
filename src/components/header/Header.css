@@ -107,14 +107,19 @@
     height: 22px;
 }
 
+@media only screen and (max-width: 900px) {
+    .header-container header .left .board-name-container h4 {
+        font-size: 1.2rem;
+    }
+    .header-container header .right button p {
+        font-size: .9rem;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .header-container header .left .board-name-container {
         border-left: none;
         margin-left: 35px;
-    }
-
-    .header-container header .left .board-name-container h4 {
-        font-size: 1.2rem;
     }
     .header-container header .right button {
         border-radius: 18px;
