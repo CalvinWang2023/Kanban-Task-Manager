@@ -36,13 +36,13 @@ const Board = () => {
 
     const randomColorPicker = () => {
         let statusIndex = Math.floor(Math.random() * tempStatusColors.length);
-        let res = tempStatusColors[statusIndex];
+        let resultColor = tempStatusColors[statusIndex];
         tempStatusColors.splice(statusIndex, 1);
     
         if (tempStatusColors.length === 0) {
             tempStatusColors = statusColors.slice();
         }
-        return res;
+        return resultColor;
     }
 
     const boardModalToggleClick = () => {
