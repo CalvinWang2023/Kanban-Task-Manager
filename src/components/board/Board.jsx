@@ -22,7 +22,28 @@ const Board = () => {
     const [taskIndex, setTaskIndex] = useState();
     const dispatch = useDispatch();
 
-    const statusColors = ["#419DB9", "#EDA44A", "#2D68F0", "#C1440E", "#D2691E", "#FFB3DE", "#D8AE6D", "#2CC3A8", "#5B5DDF"];
+    const statusColors = [
+        "#FF5733", // Red
+        "#3388FF", // Blue
+        "#33FF77", // Green
+        "#A033FF", // Purple
+        "#FFFF33", // Yellow
+        "#FFA733", // Orange
+        "#FF33A6", // Pink
+        "#33FFD8" // Teal
+    ];
+    let tempStatusColors = statusColors.slice();
+
+    const randomColorPicker = () => {
+        let statusIndex = Math.floor(Math.random() * tempStatusColors.length);
+        let res = tempStatusColors[statusIndex];
+        tempStatusColors.splice(statusIndex, 1);
+    
+        if (tempStatusColors.length === 0) {
+            tempStatusColors = statusColors.slice();
+        }
+        return res;
+    }
 
     const boardModalToggleClick = () => {
         dispatch(BoardModalToggleSlice.actions.toggleBoardModal());
@@ -44,7 +65,7 @@ const Board = () => {
                             return (
                                 <li key={ columnIndex }>
                                     <div className="status">
-                                        <span className="status-color" style={{backgroundColor: statusColors[columnIndex % 9]}}></span>
+                                        <span className="status-color" style={{backgroundColor: randomColorPicker()}}></span>
                                         <p className='status-text'>{column.name} ({column.tasks.length})</p>
                                     </div>
                                     {
