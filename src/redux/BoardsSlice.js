@@ -20,6 +20,10 @@ const BoardsSlice = createSlice({
             activeBoard.name = payload.name;
             activeBoard.columns = payload.newColumns;
         },
+        deleteBoard: (state, action) => {
+            const boardIndex = action.payload.boardIndex;
+            state.splice(boardIndex, 1);
+        },
         addTask: (state, action) => {
             const payload = action.payload;
             const activeBoard = state[payload.boardIndex];
@@ -73,7 +77,15 @@ const BoardsSlice = createSlice({
             activeTask.status = newActiveColumn.name;
 
             newActiveColumn.tasks.push(activeTask);
-        } 
+        },
+        deleteTask: (state, action) => {
+            const payload = action.payload;
+            const activeBoard = state[payload.boardIndex];
+            const activeColumn = activeBoard.columns[payload.columnIndex];
+            const activeTasks = activeColumn.tasks;    
+            
+            activeTasks.splice(payload.taskIndex, 1);
+        }
     },
 });
 
