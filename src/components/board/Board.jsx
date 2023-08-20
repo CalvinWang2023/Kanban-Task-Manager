@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './Board.css';
-import Sidebar from '../sidebar/Sidebar';
 import AddEditBoardModal from "../../modals/addEditBoardModal/AddEditBoardModal";
 import TaskModal from '../../modals/taskModal/TaskModal';
 import AddEditTaskModal from '../../modals/addEditTaskModal/AddEditTaskModal';
@@ -8,10 +7,8 @@ import BoardModalToggleSlice from "../../redux/BoardModalToggleSlice";
 import TaskModalToggleSlice from '../../redux/TaskModalToggleSlice';
 import BoardModalTypeSlice from "../../redux/BoardModalTypeSlice";
 import { useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
 
 const Board = () => {
-    const isBigScreen = useMediaQuery({ query: "(min-width: 768px)" });
     const sidebarToggle = useSelector((state) => state.sidebarToggle);
     const boardModalToggle = useSelector((state) => state.boardModalToggle);
     const taskModalToggle = useSelector((state) => state.taskModalToggle);
@@ -24,6 +21,8 @@ const Board = () => {
     const [columnIndex, setColumnIndex] = useState();
     const [taskIndex, setTaskIndex] = useState();
     const dispatch = useDispatch();
+
+    const statusColors = ["#419DB9", "#EDA44A", "#2D68F0", "#C1440E", "#D2691E", "#FFB3DE", "#D8AE6D", "#2CC3A8", "#5B5DDF"];
 
     const boardModalToggleClick = () => {
         dispatch(BoardModalToggleSlice.actions.toggleBoardModal());
@@ -44,7 +43,10 @@ const Board = () => {
                         activeBoard.columns.map((column, columnIndex) => {
                             return (
                                 <li key={ columnIndex }>
-                                    <p className='status'>{column.name} ({column.tasks.length})</p>
+                                    <div className="status">
+                                        <span className="status-color" style={{backgroundColor: statusColors[columnIndex % 9]}}></span>
+                                        <p className='status-text'>{column.name} ({column.tasks.length})</p>
+                                    </div>
                                     {
                                         column.tasks.map((task, taskIndex) => { 
                                             let subTaskCompletedNum = 0;  

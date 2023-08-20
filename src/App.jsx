@@ -13,8 +13,8 @@ const App = () => {
 
     return (
         <div className={`App ${ theme }`}>
-            { isBigScreen && <Sidebar /> }
             <Header />
+            { isBigScreen && <Sidebar /> }
             <Board />
         </div>
     )
