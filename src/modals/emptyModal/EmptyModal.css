@@ -1,0 +1,41 @@
+.empty-modal-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.empty-modal-container .modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+
+    margin: 50px;
+}
+
+.empty-modal-container .modal .description h3 {
+    color: var(--sidebar-color);
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.empty-modal-container .modal .selection button {
+    border-radius: 25px;
+    border: none;
+    background-color: var(--button-color);
+    
+    cursor: pointer;
+    transition: .3s;
+}
+.empty-modal-container .modal .selection button:hover {
+    background-color: var(--hover-color);
+}
+
+.empty-modal-container .modal .selection button p {
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 14px 20px;
+}

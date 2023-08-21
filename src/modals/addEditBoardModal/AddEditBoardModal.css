@@ -121,3 +121,18 @@
 .addedit-board-modal-container .modal .create-board-button p {
     color: var(--text-color);
 }
+
+@media only screen and (max-width: 768px) {
+    .addedit-board-modal-container .modal .board-name-input {
+        width: 270px;
+    }
+    .addedit-board-modal-container .modal .board-column-input .column-task {
+        width: 270px;
+    }
+    .addedit-board-modal-container .modal .board-column-input .column-task input {
+        width: 245px;
+    }
+    .addedit-board-modal-container .modal button {
+        width: 270px;
+    }   
+}

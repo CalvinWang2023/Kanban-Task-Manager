@@ -26,12 +26,12 @@ const Board = () => {
     const dispatch = useDispatch();
 
     const statusColors = [
-        "#33FFD8", // Teal 
-        "#FFFF33", // Yellow
+        "#33FFD8", // Teal
+        "#FFA733", // Orange 
+        "#A033FF", // Purple
         "#FF33A6", // Pink
-        "#A033FF", // Purple 
+        "#FFFF33", // Yellow
         "#33FF77", // Green
-        "#FFA733", // Orange
         "#FF5733", // Red
         "#3388FF" // Blue
     ];

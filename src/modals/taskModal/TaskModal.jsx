@@ -88,11 +88,16 @@ const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
                 <div className="task-header">
                     <h1>{ board.name }</h1>
                     <div className="ellipsis">
-                        <img 
-                            src={ ellipsis } 
-                            alt="ellipsis icon" 
-                            onClick={ () => setIsEllipsisMenuOpen(!isEllipsisMenuOpen) } 
-                        />
+                        <button 
+                            className="ellipsis-button"
+                            onClick={ () => setIsEllipsisMenuOpen(!isEllipsisMenuOpen) }
+                        >
+                            <img 
+                                src={ ellipsis } 
+                                alt="ellipsis icon" 
+                            />
+                        </button>
+
                         {
                             isEllipsisMenuOpen &&
                             <div className="ellipsis-menu">

@@ -21,6 +21,8 @@
     --delete-color: #ea5555;
     --delete-hover-color: #b84d4d;
     --cancel-hover-color: #c0c4cb;
+
+    --ellipsis-hover-color: rgba(130, 143, 163, 0.2);
 }
 
 body {

@@ -60,7 +60,11 @@ const Header = () => {
                     </div>                    
                 </div>      
                 <div className="right">
-                    <button onClick={ addEditTaskModalToggleClick }>   
+                    <button 
+                        onClick={ addEditTaskModalToggleClick }
+                        disabled={ activeBoard.columns.length <= 0 }
+                        className="add-task"
+                    >   
                         {
                             isBigScreen ? 
                                 <p>+ Add New Task</p> 
@@ -68,11 +72,15 @@ const Header = () => {
                         }
                     </button>
                     <div className="ellipsis">
-                        <img 
-                            src={ ellipsis } 
-                            alt="ellipsis menu" 
+                        <button 
+                            className="ellipsis-button"
                             onClick={ () => setIsEllipsisMenuOpen(!isEllipsisMenuOpen) }
-                        />
+                        >
+                            <img 
+                                src={ ellipsis } 
+                                alt="ellipsis menu" 
+                            />
+                        </button>
                     </div>
                 </div>
             </header>

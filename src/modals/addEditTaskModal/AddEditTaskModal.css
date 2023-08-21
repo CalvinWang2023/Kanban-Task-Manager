@@ -181,4 +181,21 @@
     color: var(--black-text-color);
 }
 
-
+@media only screen and (max-width: 768px) {
+    .addedit-task-modal-container .modal .task-name-input,
+    .addedit-task-modal-container .modal .task-description-input {
+        width: 270px;
+    }
+    .addedit-task-modal-container .modal .subtasks-input .subtasks {
+        width: 270px;
+    }
+    .addedit-task-modal-container .modal .subtasks-input .subtasks input {
+        width: 245px;
+    }
+    .addedit-task-modal-container .modal button {
+        width: 270px;
+    }   
+    .addedit-task-modal-container .modal .status .status-content {
+        width: 270px;
+    }
+}
