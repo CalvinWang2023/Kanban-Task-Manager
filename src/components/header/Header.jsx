@@ -13,11 +13,13 @@ import BoardModalToggleSlice from "../../redux/BoardModalToggleSlice";
 import BoardModalTypeSlice from "../../redux/BoardModalTypeSlice";
 import DeleteModalToggleSlice from "../../redux/DeleteModalToggleSlice";
 import DeleteModalTypeSlice from "../../redux/DeleteModalTypeSlice";
+import SidebarMobile from "../sidebarMobile/SidebarMobile";
+import SidebarMobileToggleSlice from "../../redux/SidebarMobileToggleSlice";
 
 const Header = () => {
     const dispatch = useDispatch();
     const isBigScreen = useMediaQuery({ query: "(min-width: 768px)" });
-    const [boardModalUnfolded, setBoardModalUnfolded] = useState(true);
+    const sidebarMobileToggle = useSelector((state) => state.sidebarMobileToggle);
     const boards = useSelector((state) => state.boards);
     const activeBoardIndex = useSelector((state) => state.activeBoardIndex); 
     const activeBoard = boards[activeBoardIndex];
@@ -27,18 +29,25 @@ const Header = () => {
     const addEditTaskModalToggleClick = () => {
         dispatch(AddEditTaskModalToggleSlice.actions.toggleAddEditTaskModal());
         dispatch(AddEditTaskModalTypeSlice.actions.changeAddType());
+        dispatch(SidebarMobileToggleSlice.actions.toggleSidebarMobile());
     }
 
     const boardModalToggleClick = () => {
         setIsEllipsisMenuOpen(!isEllipsisMenuOpen);
         dispatch(BoardModalToggleSlice.actions.toggleBoardModal());
         dispatch(BoardModalTypeSlice.actions.changeEditType());
+        dispatch(SidebarMobileToggleSlice.actions.toggleSidebarMobile());
     }
 
     const deleteModalToggleClick = () => {
         setIsEllipsisMenuOpen(!isEllipsisMenuOpen);
         dispatch(DeleteModalToggleSlice.actions.toggledeleteModal());
         dispatch(DeleteModalTypeSlice.actions.changeBoardType());
+        dispatch(SidebarMobileToggleSlice.actions.toggleSidebarMobile());
+    }
+
+    const sidebarMobileToggleClick = () => {
+        dispatch(SidebarMobileToggleSlice.actions.toggleSidebarMobile());
     }
 
     return (
@@ -52,8 +61,8 @@ const Header = () => {
                     <div className={ !sidebarToggle ? "board-name-container" : "board-name-container full-screen" }>
                         <h4>{ activeBoard.name }</h4>
                         { !isBigScreen && <img 
-                                                src={ boardModalUnfolded ? chevronDown : chevronUp } 
-                                                onClick={ () => setBoardModalUnfolded(!boardModalUnfolded) } 
+                                                src={ sidebarMobileToggle ? chevronUp : chevronDown } 
+                                                onClick={ sidebarMobileToggleClick } 
                                                 className="chevron"
                                                 alt="chevron up/down" /> 
                         }
@@ -100,6 +109,10 @@ const Header = () => {
                         <p>Delete Board</p>
                     </button>
                 </div>
+            }
+            {
+                sidebarMobileToggle &&
+                <SidebarMobile /> 
             }
        </div> 
     )

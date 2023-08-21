@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import logo from "../../assets/logo-mobile.svg";
 import iconBoard from "../../assets/icon-board.svg";
 import ActiveBoardSlice from "../../redux/ActiveBoardSlice";
 import SidebarToggleSlice from "../../redux/SidebarToggleSlice";

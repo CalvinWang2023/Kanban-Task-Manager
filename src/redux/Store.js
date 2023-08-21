@@ -9,6 +9,7 @@ import AddEditTaskModalToggleSlice from "./AddEditTaskModalToggleSlice";
 import AddEditTaskModalTypeSlice from "./AddEditTaskModalTypeSlice";
 import DeleteModalToggleSlice from "./DeleteModalToggleSlice";
 import DeleteModalTypeSlice from "./DeleteModalTypeSlice";
+import SidebarMobileToggleSlice from "./SidebarMobileToggleSlice";
 
 const store = configureStore({
     reducer: {
@@ -19,6 +20,7 @@ const store = configureStore({
         taskModalToggle: TaskModalToggleSlice.reducer,
         addEditTaskModalToggle: AddEditTaskModalToggleSlice.reducer,
         deleteModalToggle: DeleteModalToggleSlice.reducer,
+        sidebarMobileToggle: SidebarMobileToggleSlice.reducer,
         boardModalType: BoardModalTypeSlice.reducer,
         addEditTaskModalType: AddEditTaskModalTypeSlice.reducer,
         deleteModalType: DeleteModalTypeSlice.reducer

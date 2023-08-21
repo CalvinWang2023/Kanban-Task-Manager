@@ -1,0 +1,117 @@
+.sidebar-mobile-modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    position: fixed;
+    top: 75px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.sidebar-mobile-modal-container .modal {
+    border: 1px var(--text-color) solid;
+    background-color: white;
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    position: fixed;
+    top: 90px;
+
+    width: 290px;
+
+    padding-bottom: 16px;
+}
+
+.sidebar-mobile-modal-container .modal .summary {
+    margin-bottom: 30px;
+    margin-top: 22px;
+    margin-left: 25px;
+}
+.sidebar-mobile-modal-container .modal .summary p {
+    font-weight: 700;
+    font-size: .8rem;
+    letter-spacing: 1.3px;
+}
+
+.sidebar-mobile-modal-container .modal ul {
+    list-style: none;
+    
+    display: flex;
+    flex-direction: column;
+    width: 260px; 
+
+    overflow-y: scroll;
+    max-height: 390px;
+}
+
+.sidebar-mobile-modal-container .modal ul .board-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 14px;
+    padding-left: 35px;
+    border-bottom-right-radius: 40px;
+    border-top-right-radius: 40px;
+
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.sidebar-mobile-modal-container .modal .add-board-button button {
+    width: 260px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 14px;
+    padding-left: 35px;
+    border-bottom-right-radius: 40px;
+    border-top-right-radius: 40px;
+    color: var(--button-color);
+
+    border: none;
+    background-color: transparent;
+
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.sidebar-mobile-modal-container .modal .add-board-button button p {
+    font-weight: 700;
+}
+
+.sidebar-mobile-modal-container .modal .add-board-button button img {
+    filter: invert(56%) sepia(58%) saturate(5507%) hue-rotate(220deg) brightness(88%) contrast(77%); 
+}
+
+.sidebar-mobile-modal-container .modal .add-board-button button:hover {
+    background-color: var(--sidebar-hover-color);
+}
+
+.sidebar-mobile-modal-container .modal ul .board-section p {
+    font-weight: 700;
+}
+
+.sidebar-mobile-modal-container .modal ul .board-section:hover {
+    background-color: var(--sidebar-hover-color);
+    color: var(--button-color);
+}
+.sidebar-mobile-modal-container .modal ul .board-section:hover img {
+    filter: invert(56%) sepia(58%) saturate(5507%) hue-rotate(220deg) brightness(88%) contrast(77%); 
+}
+
+.sidebar-mobile-modal-container .modal ul .active-board {
+    background-color: var(--button-color);
+    color: var(--text-color);
+}
+.sidebar-mobile-modal-container .modal ul .active-board img {
+    filter: brightness(2);
+}
+
