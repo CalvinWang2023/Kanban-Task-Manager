@@ -6,13 +6,20 @@ import BoardModalToggleSlice from "../../redux/BoardModalToggleSlice";
 import BoardModalTypeSlice from "../../redux/BoardModalTypeSlice";
 import sidebarHide from "../../assets/icon-hide-sidebar.svg";
 import sidebarShow from "../../assets/icon-show-sidebar.svg";
-
+import iconLight from "../../assets/icon-light-theme.svg";
+import iconDark from "../../assets/icon-dark-theme.svg";
 import './Sidebar.css';
 
-const Sidebar = () => {
+const Sidebar = ({ theme, setTheme }) => {
     const boards = useSelector((state) => state.boards);
     const activeBoard = useSelector((state) => state.activeBoardIndex);
     const sidebarToggle = useSelector((state) => state.sidebarToggle);
+
+	const handleThemeChanged = () => {
+		setTheme((prevTheme) => {
+            return prevTheme === 'light' ? 'dark' : 'light';
+        });
+	};
 
     const dispatch = useDispatch();
     const changeBoardClick = (index) => {
@@ -69,6 +76,27 @@ const Sidebar = () => {
                         <img src={sidebarHide} alt="hide sidebar icon" />
                         <p>Hide Sidebar</p>
                     </div>
+                    <div className="switch">
+                        <div className="bright-pic">
+                            <img src={ iconLight } alt="bright mode icon" />
+                        </div>
+                        <div className="switch-mode">
+                            <input 
+                                type="checkbox" 
+                                className="checkbox" 
+                                id="checkbox"
+                                onChange={ handleThemeChanged } />
+                            <label 
+                                htmlFor="checkbox" 
+                                className="checkbox-label"
+                                id="checkbox-label" >
+                                <span className={ theme === 'light' ? "ball" : "ball move" }></span>
+                            </label>
+                        </div>
+                        <div className="dark-pic">
+                            <img src={ iconDark } alt="dark mode icon" />
+                        </div>
+				    </div>
                 </div>
             }
             {

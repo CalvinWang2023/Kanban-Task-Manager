@@ -12,6 +12,10 @@
     align-items: center;
 }
 
+.dark .header-container {
+    background-color: var(--dark-sidebar-color);
+}
+
 .header-container header {
     display: flex;
     flex-direction: row;
@@ -39,6 +43,9 @@
     font-weight: 700;
     color: var(--black-text-color);
 }
+.dark .header-container header .left .logo-container h3 {
+    color: var(--text-color);
+}
 
 .header-container header .left .board-name-container {
     display: flex;
@@ -56,12 +63,19 @@
     margin-left: 285px;
 }
 
+.dark .header-container header .left .board-name-container { 
+    border-left: 1px var(--dark-board-color) solid;
+}
+
 .header-container header .left .full-screen {
     margin-left: 205px;
 }
 
 .header-container header .left .board-name-container h4 {
     font-size: 1.6rem;  
+}
+.dark .header-container header .left .board-name-container h4 {
+    color: var(--text-color);
 }
 
 .header-container header .left .board-name-container .chevron {
@@ -119,7 +133,7 @@
 
 .header-container .ellipsis-menu {
     border: 1px var(--text-color) solid;
-    background-color: white;
+    background-color: var(--text-color);
     box-shadow: 2px 2px 6px var(--card-shadow-color);
     border-radius: 8px;
     padding: 20px;
@@ -134,6 +148,11 @@
     position: fixed;
     top: 75px;
     right: 2%;
+}
+.dark .header-container .ellipsis-menu {
+    border: 1px var(--dark-sidebar-color) solid;
+    background-color: var(--dark-sidebar-color);
+    box-shadow: 2px 2px 6px var(--dark-board-color);
 }
 
 .header-container .ellipsis-menu button {
@@ -171,8 +190,14 @@
         border-left: none;
         margin-left: 10px;
     }
+    .dark .header-container header .left .board-name-container { 
+        border-left: none;
+    }
     .header-container header .left .board-name-container h4 {
         font-size: 1.1rem;  
+    }
+    .header-container header .right {
+        margin-right: 6px;
     }
     .header-container header .right .add-task {
         border-radius: 18px;
@@ -186,12 +211,11 @@
         padding: 10px 16px;
     }
     .header-container header .right .ellipsis .ellipsis-button {
-        padding: 8px;
+        padding: 8px 14px;
     }
     .header-container header .right .ellipsis .ellipsis-button img {
-        height: 16px;
+        height: 14px;
     }
-
     .header-container .ellipsis-menu {
         width: 160px;
     }

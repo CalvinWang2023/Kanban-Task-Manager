@@ -8,6 +8,10 @@
     border-left: 1.5px var(--sidebar-hover-color) solid;
 }
 
+.dark .board-container {
+    border-left: 1.5px var(--dark-board-color) solid;
+}
+
 .full-screen {
     margin-left: 0;
 }
@@ -26,6 +30,10 @@
     overflow-x: scroll;
 }
 
+.dark .board-container .board {
+    background-color: var(--dark-board-color);
+}
+
 .board-container .board li {
     display: flex;
     flex-direction: column;
@@ -41,6 +49,11 @@
     font-size: 1.25rem;
     color: var(--sidebar-color);
     cursor: pointer;
+}
+
+.dark .board-container .board li button {
+    background-color: var(--dark-sidebar-color);
+    color: var(--text-color);
 }
 
 .board-container .board li button:hover h2 {
@@ -76,17 +89,24 @@
     flex-direction: column;
     gap: 10px;
 
-    padding: 18px;
+    padding: 24px;
     background-color: var(--text-color);
     box-shadow: 2px 2px 6px var(--card-shadow-color);
     border-radius: 12px;
     cursor: pointer;
+}
+.dark .board-container .board li .card {
+    background-color: var(--dark-sidebar-color);
+    box-shadow: 2px 2px 6px var(--dark-card-shadow-color);
 }
 
 .board-container .board li .card .title {
     font-weight: 700;
     font-size: 1rem;
     color: var(--black-text-color);
+}
+.dark .board-container .board li .card .title {
+    color: var(--text-color);
 }
 
 .board-container .board li .card:hover .title {
@@ -97,6 +117,9 @@
     font-weight: 700;
     color: var(--sidebar-color);
     font-size: .85rem;
+}
+.dark .board-container .board li .card .subtask {
+    color: var(--dark-sidebar-text-color);
 }
 
 @media only screen and (max-width: 768px) {

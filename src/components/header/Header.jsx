@@ -16,7 +16,7 @@ import DeleteModalTypeSlice from "../../redux/DeleteModalTypeSlice";
 import SidebarMobile from "../sidebarMobile/SidebarMobile";
 import SidebarMobileToggleSlice from "../../redux/SidebarMobileToggleSlice";
 
-const Header = () => {
+const Header = ({ theme, setTheme }) => {
     const dispatch = useDispatch();
     const isBigScreen = useMediaQuery({ query: "(min-width: 768px)" });
     const sidebarMobileToggle = useSelector((state) => state.sidebarMobileToggle);
@@ -29,21 +29,18 @@ const Header = () => {
     const addEditTaskModalToggleClick = () => {
         dispatch(AddEditTaskModalToggleSlice.actions.toggleAddEditTaskModal());
         dispatch(AddEditTaskModalTypeSlice.actions.changeAddType());
-        dispatch(SidebarMobileToggleSlice.actions.toggleSidebarMobile());
     }
 
     const boardModalToggleClick = () => {
         setIsEllipsisMenuOpen(!isEllipsisMenuOpen);
         dispatch(BoardModalToggleSlice.actions.toggleBoardModal());
         dispatch(BoardModalTypeSlice.actions.changeEditType());
-        dispatch(SidebarMobileToggleSlice.actions.toggleSidebarMobile());
     }
 
     const deleteModalToggleClick = () => {
         setIsEllipsisMenuOpen(!isEllipsisMenuOpen);
         dispatch(DeleteModalToggleSlice.actions.toggledeleteModal());
         dispatch(DeleteModalTypeSlice.actions.changeBoardType());
-        dispatch(SidebarMobileToggleSlice.actions.toggleSidebarMobile());
     }
 
     const sidebarMobileToggleClick = () => {
@@ -111,8 +108,9 @@ const Header = () => {
                 </div>
             }
             {
-                sidebarMobileToggle &&
-                <SidebarMobile /> 
+                sidebarMobileToggle && 
+                !isBigScreen &&
+                <SidebarMobile theme = { theme } setTheme = { setTheme } /> 
             }
        </div> 
     )

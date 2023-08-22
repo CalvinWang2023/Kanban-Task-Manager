@@ -11,6 +11,11 @@
     background-color: var(--text-color);
 }
 
+.dark .sidebar-container {
+    color: var(--dark-sidebar-text-color);
+    background-color: var(--dark-sidebar-color);
+}
+
 .sidebar-container .container .summary {
     margin-bottom: 25px;
     margin-top: 28px;
@@ -103,6 +108,9 @@
 .sidebar-container .container .sidebar-hide p {
     color: var(--sidebar-color);
 }
+.dark .sidebar-container .container .sidebar-hide p {
+    color: var(--dark-sidebar-text-color);
+}
 
 .sidebar-container .container .sidebar-hide:hover img {
     filter: invert(56%) sepia(58%) saturate(5507%) hue-rotate(220deg) brightness(88%) contrast(77%);
@@ -155,4 +163,65 @@
 
 .closed .sidebar-open:hover {
     background-color: var(--hover-color);
+}
+
+/*********************************** switch *****************************/
+
+.sidebar-container .container .switch {
+    position: fixed;
+    z-index: 1;
+    top: 590px;
+    left: 0;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 12px;
+
+    margin-left: 25px;
+    width: 235px;
+    border-radius: 12px;
+
+    background-color: var(--board-bg-color);
+}
+.dark .sidebar-container .container .switch {
+    background-color: var(--dark-board-color);
+}
+
+.sidebar-container .container .switch .checkbox {
+    opacity: 0;
+    position: absolute;
+}
+
+.sidebar-container .container .switch .checkbox-label {
+    background-color: gray;
+    display: flex;
+    padding: 5px;
+    height: 20px;
+    width: 42px;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+.dark .sidebar-container .container .switch .checkbox-label {
+    background-color: var(--button-color);
+}
+
+.sidebar-container .container .switch .checkbox-label .ball {
+    background-color: white;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    position: absolute;
+    top: 12%;
+    left: 6%;
+
+    transition: transform .2s linear;
+}
+
+.sidebar-container .container .switch .checkbox-label .move {
+    transform: translateX(22px);
 }

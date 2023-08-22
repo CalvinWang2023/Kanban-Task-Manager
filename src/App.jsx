@@ -17,8 +17,8 @@ const App = () => {
             {
                 boards.length > 0 &&
                 <section className="app-section">
-                    <Header />
-                    { isBigScreen && <Sidebar /> }
+                    <Header theme = { theme } setTheme = { setTheme } />
+                    { isBigScreen && <Sidebar theme = { theme } setTheme = { setTheme } /> }
                     <Board /> 
                 </section>
             }

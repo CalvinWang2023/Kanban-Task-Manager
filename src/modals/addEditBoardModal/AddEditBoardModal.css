@@ -17,7 +17,7 @@
 
 .addedit-board-modal-container .modal {
     border: 1px var(--text-color) solid;
-    background-color: white;
+    background-color: var(--text-color);
     border-radius: 8px;
     padding: 30px;
 
@@ -30,9 +30,16 @@
     max-height: 600px;
     overflow-y: scroll;
 }
+.dark .addedit-board-modal-container .modal {
+    border: 1px var(--dark-sidebar-color) solid;
+    background-color: var(--dark-sidebar-color);
+}
 
 .addedit-board-modal-container .modal .title {
     font-size: .7rem;
+}
+.dark .addedit-board-modal-container .modal .title {
+    color: var(--text-color);
 }
 
 .addedit-board-modal-container .modal label {
@@ -40,16 +47,26 @@
     font-weight: 700;
     font-size: .9rem
 }
+.dark .addedit-board-modal-container .modal label {
+    color: var(--text-color);
+}
 
 .addedit-board-modal-container .modal input {
     padding: 15px;
     border-radius: 5px;
     border: 1px var(--sidebar-hover-color) solid;
-    outline-color: var(--button-color);
 }
-
+.addedit-board-modal-container .modal input:focus {
+    outline: 1px var(--button-color) solid;
+}
 .addedit-board-modal-container .modal input:hover {
     border-color: var(--button-color); 
+}
+
+.dark .addedit-board-modal-container .modal input {
+    background-color: var(--dark-sidebar-color);
+    border: 1px var(--dark-sidebar-text-color) solid;
+    color: var(--text-color);
 }
 
 .addedit-board-modal-container .modal .board-name-input {
@@ -98,13 +115,10 @@
 }
 
 .addedit-board-modal-container .modal .create-column-button {
-    background-color: var(--board-bg-color);
+    background-color: rgb(241, 238, 238);
 }
 .addedit-board-modal-container .modal .create-column-button:hover {
-    background-color: var(--hover-color);   
-}
-.addedit-board-modal-container .modal .create-column-button:hover p {
-    color: var(--text-color);
+    background-color:  #cfd3da;   
 }
 
 .addedit-board-modal-container .modal .create-board-button {

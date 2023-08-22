@@ -23,6 +23,11 @@
     --cancel-hover-color: #c0c4cb;
 
     --ellipsis-hover-color: rgba(130, 143, 163, 0.2);
+
+    --dark-board-color: #20212c;
+    --dark-sidebar-color: #2b2c37;
+    --dark-card-shadow-color: #19191d;
+    --dark-sidebar-text-color: #828fa3;
 }
 
 body {

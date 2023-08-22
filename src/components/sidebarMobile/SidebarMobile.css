@@ -1,4 +1,5 @@
 .sidebar-mobile-modal-container {
+    color: var(--sidebar-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,7 +14,7 @@
 
 .sidebar-mobile-modal-container .modal {
     border: 1px var(--text-color) solid;
-    background-color: white;
+    background-color: var(--text-color);
     border-radius: 8px;
 
     display: flex;
@@ -26,6 +27,10 @@
     width: 290px;
 
     padding-bottom: 16px;
+}
+.dark .sidebar-mobile-modal-container .modal {
+    border: 1px var(--dark-sidebar-color) solid;
+    background-color: var(--dark-sidebar-color);
 }
 
 .sidebar-mobile-modal-container .modal .summary {
@@ -115,3 +120,59 @@
     filter: brightness(2);
 }
 
+/*********************************** switch *****************************/
+
+.sidebar-mobile-modal-container .modal .switch {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 12px;
+
+    margin-left: 25px;
+    width: 235px;
+    border-radius: 12px;
+
+    background-color: var(--board-bg-color);
+}
+.dark .sidebar-mobile-modal-container .modal .switch {
+    background-color: var(--dark-board-color);
+}
+
+.sidebar-mobile-modal-container .modal .switch .checkbox {
+    opacity: 0;
+    position: absolute;
+}
+
+.sidebar-mobile-modal-container .modal .switch .checkbox-label {
+    background-color: gray;
+    display: flex;
+    padding: 5px;
+    height: 20px;
+    width: 42px;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+.dark .sidebar-mobile-modal-container .modal .switch .checkbox-label {
+    background-color: var(--button-color);
+}
+
+.sidebar-mobile-modal-container .modal .switch .checkbox-label .ball {
+    background-color: white;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    position: absolute;
+    top: 12%;
+    left: 6%;
+
+    transition: transform .2s linear;
+}
+
+.sidebar-mobile-modal-container .modal .switch .checkbox-label .move {
+    transform: translateX(22px);
+}

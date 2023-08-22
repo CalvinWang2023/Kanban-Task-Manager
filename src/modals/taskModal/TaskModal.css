@@ -26,6 +26,11 @@
     max-height: 600px;
     overflow-y: scroll;
 }
+.dark .task-modal-container .modal {
+    border: 1px var(--dark-sidebar-color) solid;
+    background-color: var(--dark-sidebar-color);
+}
+
 
 .task-modal-container .modal .task-header {
     display: flex;
@@ -38,6 +43,9 @@
 
 .task-modal-container .modal .task-header h1 {
     font-size: 1.15rem;
+}
+.dark .task-modal-container .modal .task-header h1 {
+    color: var(--text-color);
 }
 
 .task-modal-container .modal .task-header .ellipsis {
@@ -67,14 +75,14 @@
 .task-modal-container .modal .description p {
     font-size: .8rem;
     font-weight: 500;
-    color: var(--sidebar-color);
+    color: var(--dark-sidebar-text-color);
     line-height: 1.6;
 }
 
 .task-modal-container .modal .subtasks .subtask-title {
     font-size: .8rem;
     font-weight: 700;
-    color: var(--sidebar-color);
+    color: var(--dark-sidebar-text-color);
     margin-bottom: 16px;
 }
 
@@ -99,6 +107,11 @@
 
     cursor: pointer;
 }
+.dark .task-modal-container .modal .subtasks .subtask-list .subtask {
+    background-color: var(--dark-board-color);
+    border: 1px var(--dark-sidebar-color) solid;
+    color: var(--text-color);
+}
 
 .task-modal-container .modal .subtasks .subtask-list .subtask input {
     cursor: pointer;
@@ -112,6 +125,9 @@
 
 .task-modal-container .modal .subtasks .subtask-list .subtask:hover {
     background-color: var(--sidebar-hover-color);
+}
+.dark .task-modal-container .modal .subtasks .subtask-list .subtask:hover {
+    background-color: var(--dark-sidebar-text-color);
 }
 
 .task-modal-container .modal .subtasks .subtask-list .subtask .unchecked {
@@ -130,7 +146,7 @@
 .task-modal-container .modal .status .status-title {
     font-weight: 700;
     font-size: .8rem;
-    color: var(--sidebar-color);
+    color: var(--dark-sidebar-text-color);
     margin-bottom: 16px;
 }
 
@@ -154,6 +170,9 @@
     font-weight: 700;
     font-size: .85rem;
 }
+.dark .task-modal-container .modal .status .status-content p { 
+    color: var(--text-color);
+}
 
 .task-modal-container .modal .status ul {
     list-style: none;
@@ -171,9 +190,15 @@
     font-size: .85rem;
     color: var(--sidebar-color);
 }
+.dark .task-modal-container .modal .status ul li p {
+    color: var(--dark-sidebar-text-color);
+}
 
 .task-modal-container .modal .status ul li:hover p {
     color: var(--black-text-color);
+}
+.dark .task-modal-container .modal .status ul li:hover p  {
+    color: var(--text-color);
 }
 
 /*********************** ellipsis menu ***************************/
@@ -196,6 +221,12 @@
     top: 135%;
     right: 0%;
 }
+.dark .task-modal-container .ellipsis-menu {
+    border: 1px var(--dark-sidebar-color) solid;
+    background-color: var(--dark-sidebar-color);
+    box-shadow: 2px 2px 6px var(--dark-board-color);
+}
+
 .task-modal-container .ellipsis .ellipsis-menu button {
     border: none;
     background-color: transparent;

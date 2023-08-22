@@ -13,7 +13,7 @@
 
 .addedit-task-modal-container .modal {
     border: 1px var(--text-color) solid;
-    background-color: white;
+    background-color: var(--text-color);
     border-radius: 8px;
     padding: 30px;
 
@@ -27,8 +27,16 @@
     overflow-y: scroll;
 }
 
+.dark .addedit-task-modal-container .modal {
+    border: 1px var(--dark-sidebar-color) solid;
+    background-color: var(--dark-sidebar-color);
+}
+
 .addedit-task-modal-container .modal .title {
     font-size: .7rem;
+}
+.dark .addedit-task-modal-container .modal .title {
+    color: var(--text-color);
 }
 
 .addedit-task-modal-container .modal label {
@@ -36,15 +44,28 @@
     font-weight: 700;
     font-size: .9rem
 }
+.dark .addedit-task-modal-container .modal label {
+    color: var(--text-color);
+}
 
 .addedit-task-modal-container .modal input,
 .addedit-task-modal-container .modal textarea {
     padding: 15px;
     border-radius: 5px;
     border: 1px var(--sidebar-hover-color) solid;
-    outline-color: var(--button-color);
+    
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 500;
+}
+.addedit-task-modal-container .modal input:focus,
+.addedit-task-modal-container .modal textarea:focus {
+    outline: 1px var(--button-color) solid;
+}
+.dark .addedit-task-modal-container .modal input,
+.dark .addedit-task-modal-container .modal textarea {
+    background-color: var(--dark-sidebar-color);
+    border: 1px var(--dark-sidebar-text-color) solid;
+    color: var(--text-color);
 }
 
 .addedit-task-modal-container .modal input:hover,
@@ -138,6 +159,9 @@
     color: var(--sidebar-color);
     margin-bottom: 16px;
 }
+.dark .addedit-task-modal-container .modal .status .status-title {
+    color: var(--text-color);
+}
 
 .addedit-task-modal-container .modal .status .status-content {
     display: flex;
@@ -159,6 +183,9 @@
     font-weight: 700;
     font-size: .85rem;
 }
+.dark .addedit-task-modal-container .modal .status .status-content p {
+    color: var(--text-color);
+}
 
 .addedit-task-modal-container .modal .status ul {
     list-style: none;
@@ -174,11 +201,14 @@
 .addedit-task-modal-container .modal .status ul li p {
     font-weight: 700;
     font-size: .85rem;
-    color: var(--sidebar-color);
+    color: var(--dark-sidebar-text-color);
 }
 
 .addedit-task-modal-container .modal .status ul li:hover p {
     color: var(--black-text-color);
+}
+.dark .addedit-task-modal-container .modal .status ul li:hover p {
+    color: var(--text-color);
 }
 
 @media only screen and (max-width: 768px) {
