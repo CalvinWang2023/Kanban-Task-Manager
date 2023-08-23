@@ -4,8 +4,7 @@ import ellipsis from '../../assets/icon-vertical-ellipsis.svg';
 import chevronUp from '../../assets/icon-chevron-up.svg';
 import chevronDown from '../../assets/icon-chevron-down.svg';
 import './TaskModal.css';
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import BoardsSlice from "../../redux/BoardsSlice";
 import AddEditTaskModalToggleSlice from "../../redux/AddEditTaskModalToggleSlice";
 import AddEditTaskModalTypeSlice from "../../redux/AddEditTaskModalTypeSlice";
@@ -23,6 +22,28 @@ const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
     const [taskIndex, setTaskIndex] = useState(currentTaskIndex);
     const [isEllipsisMenuOpen, setIsEllipsisMenuOpen] = useState(false);
 
+    const ellipsisModalRef = useRef(null);
+    const ellipsisImgRef = useRef(null);
+
+    const clickOnOutside = (e) => {
+        const element = e.target;
+
+        if (!ellipsisImgRef.current?.contains(element) && ellipsisModalRef.current && !ellipsisModalRef.current?.contains(element)) {
+            e.preventDefault();
+            e.stopPropagation();
+            setIsEllipsisMenuOpen(false);
+        }
+    }
+
+    const ellipsisMenuControl = () => {
+        if (isEllipsisMenuOpen === false) {
+            document.body.addEventListener("click", clickOnOutside);
+        } else {
+            document.body.removeEventListener("click", clickOnOutside);
+        }
+        setIsEllipsisMenuOpen(!isEllipsisMenuOpen);
+    };
+
     const board = {
         name: activeBoard.columns[columnIndex].tasks[taskIndex].title,
         description: activeBoard.columns[columnIndex].tasks[taskIndex].description,
@@ -35,7 +56,9 @@ const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
 
     const taskModalToggleClick = () => {
         dispatch(TaskModalToggleSlice.actions.toggleTaskModal());
-        setIsEllipsisMenuOpen(false);
+        if (isEllipsisMenuOpen === true) {
+            ellipsisMenuControl();
+        }
     }
 
     const checkboxOnChangeHandler = (boardIndex, columnIndex, taskIndex, subtaskIndex, isCompleted) => {
@@ -57,14 +80,12 @@ const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
     }
 
     const addEditTaskModalToggleClick = () => {
-        setIsEllipsisMenuOpen(false);
         taskModalToggleClick();
         dispatch(AddEditTaskModalToggleSlice.actions.toggleAddEditTaskModal());
         dispatch(AddEditTaskModalTypeSlice.actions.changeEditType());
     }
 
     const deleteModalToggleClick = () => {
-        setIsEllipsisMenuOpen(false);
         taskModalToggleClick();
         dispatch(DeleteModalToggleSlice.actions.toggledeleteModal());
         dispatch(DeleteModalTypeSlice.actions.changeTaskType());
@@ -87,10 +108,10 @@ const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
             <div className="modal">
                 <div className="task-header">
                     <h1>{ board.name }</h1>
-                    <div className="ellipsis">
+                    <div className="ellipsis" ref={ellipsisImgRef}>
                         <button 
                             className="ellipsis-button"
-                            onClick={ () => setIsEllipsisMenuOpen(!isEllipsisMenuOpen) }
+                            onClick={ ellipsisMenuControl }
                         >
                             <img 
                                 src={ ellipsis } 
@@ -100,7 +121,7 @@ const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
 
                         {
                             isEllipsisMenuOpen &&
-                            <div className="ellipsis-menu">
+                            <div className="ellipsis-menu" ref={ellipsisModalRef}>
                                 <button 
                                     className="edit"
                                     onClick={ addEditTaskModalToggleClick }
