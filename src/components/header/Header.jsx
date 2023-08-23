@@ -32,7 +32,7 @@ const Header = ({ theme, setTheme }) => {
     const clickOnOutside = (e) => {
         const element = e.target;
 
-        if (!ellipsisImgRef.current?.contains(element) && ellipsisModalRef.current && !ellipsisModalRef.current?.contains(element)) {
+        if (!ellipsisImgRef.current?.contains(element) && !ellipsisModalRef.current?.contains(element)) {
             e.preventDefault();
             e.stopPropagation();
             setIsEllipsisMenuOpen(false);
