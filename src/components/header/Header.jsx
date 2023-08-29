@@ -30,20 +30,24 @@ const Header = ({ theme, setTheme }) => {
     const ellipsisImgRef = useRef(null);
 
     const clickOnOutside = (e) => {
+        console.log('clickOn');
         const element = e.target;
 
         if (!ellipsisImgRef.current?.contains(element) && !ellipsisModalRef.current?.contains(element)) {
-            e.preventDefault();
-            e.stopPropagation();
             setIsEllipsisMenuOpen(false);
+            document.body.removeEventListener("click", clickOnOutsideRef.current);
         }
     }
 
+    const clickOnOutsideRef = useRef(clickOnOutside);
+    
     const ellipsisMenuControl = () => {
         if (isEllipsisMenuOpen === false) {
-            document.body.addEventListener("click", clickOnOutside);
+            console.log('add');
+            document.body.addEventListener("click", clickOnOutsideRef.current);
         } else {
-            document.body.removeEventListener("click", clickOnOutside);
+            console.log('remove');
+            document.body.removeEventListener("click", clickOnOutsideRef.current);
         }
         setIsEllipsisMenuOpen(!isEllipsisMenuOpen);
     };
