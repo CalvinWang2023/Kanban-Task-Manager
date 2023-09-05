@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import './Header.css';
 import logo from "../../assets/logo-mobile.svg";
@@ -6,20 +6,21 @@ import chevronUp from '../../assets/icon-chevron-up.svg';
 import chevronDown from '../../assets/icon-chevron-down.svg';
 import ellipsis from '../../assets/icon-vertical-ellipsis.svg';
 import addSign from '../../assets/icon-add-task-mobile.svg';
-import { useSelector, useDispatch } from "react-redux";
-import AddEditTaskModalToggleSlice from "../../redux/AddEditTaskModalToggleSlice";
-import AddEditTaskModalTypeSlice from "../../redux/AddEditTaskModalTypeSlice";
-import BoardModalToggleSlice from "../../redux/BoardModalToggleSlice";
-import BoardModalTypeSlice from "../../redux/BoardModalTypeSlice";
-import DeleteModalToggleSlice from "../../redux/DeleteModalToggleSlice";
-import DeleteModalTypeSlice from "../../redux/DeleteModalTypeSlice";
+import { useDispatch, useSelector } from "react-redux";
+import AddEditTaskModal from "../../modals/addEditTaskModal/AddEditTaskModal";
 import SidebarMobile from "../sidebarMobile/SidebarMobile";
-import SidebarMobileToggleSlice from "../../redux/SidebarMobileToggleSlice";
+import DeleteModal from "../../modals/deleteModal/DeleteModal";
+import AddEditBoardModal from "../../modals/addEditBoardModal/AddEditBoardModal";
+import BoardsSlice from "../../redux/BoardsSlice";
 
 const Header = ({ theme, setTheme }) => {
     const dispatch = useDispatch();
+    const [addEditTaskModalOpen, setAddEditTaskModalOpen] = useState(false);
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const [boardModalOpen, setBoardModalOpen] = useState(false);
+    const [sidebarMobileOpen, setSidebarMobileOpen] = useState(false);
+
     const isBigScreen = useMediaQuery({ query: "(min-width: 768px)" });
-    const sidebarMobileToggle = useSelector((state) => state.sidebarMobileToggle);
     const boards = useSelector((state) => state.boards);
     const activeBoardIndex = useSelector((state) => state.activeBoardIndex); 
     const activeBoard = boards[activeBoardIndex];
@@ -30,7 +31,6 @@ const Header = ({ theme, setTheme }) => {
     const ellipsisImgRef = useRef(null);
 
     const clickOnOutside = (e) => {
-        console.log('clickOn');
         const element = e.target;
 
         if (!ellipsisImgRef.current?.contains(element) && !ellipsisModalRef.current?.contains(element)) {
@@ -43,34 +43,34 @@ const Header = ({ theme, setTheme }) => {
     
     const ellipsisMenuControl = () => {
         if (isEllipsisMenuOpen === false) {
-            console.log('add');
             document.body.addEventListener("click", clickOnOutsideRef.current);
         } else {
-            console.log('remove');
             document.body.removeEventListener("click", clickOnOutsideRef.current);
         }
         setIsEllipsisMenuOpen(!isEllipsisMenuOpen);
     };
 
     const addEditTaskModalToggleClick = () => {
-        dispatch(AddEditTaskModalToggleSlice.actions.toggleAddEditTaskModal());
-        dispatch(AddEditTaskModalTypeSlice.actions.changeAddType());
+        setAddEditTaskModalOpen((state) => !state);
     }
 
     const boardModalToggleClick = () => {
         ellipsisMenuControl();
-        dispatch(BoardModalToggleSlice.actions.toggleBoardModal());
-        dispatch(BoardModalTypeSlice.actions.changeEditType());
+        setBoardModalOpen((state) => !state);
     }
 
     const deleteModalToggleClick = () => {
         ellipsisMenuControl();
-        dispatch(DeleteModalToggleSlice.actions.toggledeleteModal());
-        dispatch(DeleteModalTypeSlice.actions.changeBoardType());
+        setDeleteModalOpen((state) => !state);
     }
 
     const sidebarMobileToggleClick = () => {
-        dispatch(SidebarMobileToggleSlice.actions.toggleSidebarMobile());
+        setSidebarMobileOpen((state) => !state);
+    }
+
+    const deleteBoardClick = () => {
+        setDeleteModalOpen((state) => !state);
+        dispatch(BoardsSlice.actions.deleteBoard({ boardIndex: activeBoardIndex }));
     }
 
     return (
@@ -84,7 +84,7 @@ const Header = ({ theme, setTheme }) => {
                     <div className={ !sidebarToggle ? "board-name-container" : "board-name-container full-screen" }>
                         <h4>{ activeBoard.name }</h4>
                         { !isBigScreen && <img 
-                                                src={ sidebarMobileToggle ? chevronUp : chevronDown } 
+                                                src={ sidebarMobileOpen ? chevronUp : chevronDown } 
                                                 onClick={ sidebarMobileToggleClick } 
                                                 className="chevron"
                                                 alt="chevron up/down" /> 
@@ -116,8 +116,7 @@ const Header = ({ theme, setTheme }) => {
                     </div>
                 </div>
             </header>
-            {
-                isEllipsisMenuOpen &&
+            { isEllipsisMenuOpen &&
                 <div className="ellipsis-menu" ref={ellipsisModalRef}>
                     <button 
                         className="edit"
@@ -133,11 +132,12 @@ const Header = ({ theme, setTheme }) => {
                     </button>
                 </div>
             }
-            {
-                sidebarMobileToggle && 
-                !isBigScreen &&
-                <SidebarMobile theme = { theme } setTheme = { setTheme } /> 
+            { sidebarMobileOpen && !isBigScreen &&
+                <SidebarMobile theme = { theme } setTheme = { setTheme } setSidebarMobileOpen={ setSidebarMobileOpen } /> 
             }
+            { boardModalOpen && <AddEditBoardModal type='edit' setBoardModalOpen={ setBoardModalOpen } /> }
+            { addEditTaskModalOpen && <AddEditTaskModal type='add' setAddEditTaskModalOpen={ setAddEditTaskModalOpen } /> } 
+            { deleteModalOpen && <DeleteModal type='board' deleteClick={ deleteBoardClick } setDeleteModalOpen={ setDeleteModalOpen } /> }    
        </div> 
     )
 }

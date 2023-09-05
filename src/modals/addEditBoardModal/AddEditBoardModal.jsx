@@ -1,11 +1,10 @@
 import './AddEditBoardModal.css';
 import { useDispatch, useSelector } from "react-redux";
-import BoardModalToggleSlice from "../../redux/BoardModalToggleSlice";
 import BoardsSlice from '../../redux/BoardsSlice';
 import cross from '../../assets/icon-cross.svg';
 import { useState, useEffect } from 'react';
 
-const AddEditBoardModal = ({ type }) => {
+const AddEditBoardModal = ({ type, setBoardModalOpen }) => {
     const dispatch = useDispatch();
     const boards = useSelector((state) => state.boards);
     const activeBoardIndex = useSelector((state) => state.activeBoardIndex);
@@ -16,7 +15,7 @@ const AddEditBoardModal = ({ type }) => {
     const [columns, setColumns] = useState([{ name: '', tasks: [] }, { name: '', tasks: [] }]);
 
     const boardModalToggleClick = () => {
-        dispatch(BoardModalToggleSlice.actions.toggleBoardModal());
+        setBoardModalOpen((state) => !state);
     }
 
     const CreateBoardClick = () => {

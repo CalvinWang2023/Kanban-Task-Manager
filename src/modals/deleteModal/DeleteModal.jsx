@@ -1,28 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
-import DeleteModalToggleSlice from "../../redux/DeleteModalToggleSlice";
+import { useSelector } from "react-redux";
 import './DeleteModal.css';
-import BoardsSlice from "../../redux/BoardsSlice";
 
-const DeleteModal = ({ type, columnIndex, taskIndex }) => {
-    const dispatch = useDispatch();
+const DeleteModal = ({ type, columnIndex, taskIndex, deleteClick, setDeleteModalOpen }) => {
     const boards = useSelector((state) => state.boards);
     const activeBoardIndex = useSelector((state) => state.activeBoardIndex);
     const activeBoard = boards[activeBoardIndex];
-
-    const deleteModalToggleClick = () => {
-        dispatch(DeleteModalToggleSlice.actions.toggledeleteModal());
-    }
-
-    const deleteBoardClick = () => {
-        deleteModalToggleClick();
-        dispatch(BoardsSlice.actions.deleteBoard({ boardIndex: activeBoardIndex }));
-    }
-    const deleteTaskClick = () => {
-        deleteModalToggleClick();
-        dispatch(BoardsSlice.actions.deleteTask({ boardIndex: activeBoardIndex, 
-                                                    columnIndex: columnIndex, 
-                                                    taskIndex: taskIndex }));
-    }
     
     return (
         <div 
@@ -36,7 +18,7 @@ const DeleteModal = ({ type, columnIndex, taskIndex }) => {
         >
             <div className="modal">
                 <div className="title">
-                    <h1>{ type === 'board' ? 'Delete this board?' : "Delete this task?" }</h1>
+                    <h1>{ `Delete this ${ type }?` }</h1>
                 </div>
                 <div className="content">
                     <p>
@@ -52,13 +34,13 @@ const DeleteModal = ({ type, columnIndex, taskIndex }) => {
                 <div className="button-choices">
                     <button 
                         className="delete"
-                        onClick={ type === 'board' ? deleteBoardClick : deleteTaskClick }
+                        onClick={ () => deleteClick() }
                     >
                         <p>Delete</p>
                     </button>
                     <button 
                         className="cancel"
-                        onClick={ deleteModalToggleClick }
+                        onClick={ () => setDeleteModalOpen((state) => !state) }
                     >
                         <p>Cancel</p>
                     </button>

@@ -1,13 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import AddEditTaskModalToggleSlice from "../../redux/AddEditTaskModalToggleSlice";
 import BoardsSlice from "../../redux/BoardsSlice";
 import cross from '../../assets/icon-cross.svg';
 import chevronUp from '../../assets/icon-chevron-up.svg';
 import chevronDown from '../../assets/icon-chevron-down.svg';
 import './AddEditTaskModal.css';
 
-const AddEditTaskModal = ({ type, columnIndex, taskIndex }) => {
+const AddEditTaskModal = ({ type, columnIndex, taskIndex, setAddEditTaskModalOpen }) => {
     const dispatch = useDispatch();
     const boards = useSelector((state) => state.boards);
     const activeBoardIndex = useSelector((state) => state.activeBoardIndex);
@@ -22,7 +21,7 @@ const AddEditTaskModal = ({ type, columnIndex, taskIndex }) => {
     const [originalStatusIndex, setOriginalStatusIndex] = useState();
 
     const addEditTaskModalToggleClick = () => {
-        dispatch(AddEditTaskModalToggleSlice.actions.toggleAddEditTaskModal());
+        setAddEditTaskModalOpen((state) => !state);
     }
 
     const statusChangeClick = (boardIndex, columnIndex, taskIndex, statusIndex) => {

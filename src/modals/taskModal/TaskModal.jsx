@@ -1,4 +1,3 @@
-import TaskModalToggleSlice from "../../redux/TaskModalToggleSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ellipsis from '../../assets/icon-vertical-ellipsis.svg';
 import chevronUp from '../../assets/icon-chevron-up.svg';
@@ -6,27 +5,27 @@ import chevronDown from '../../assets/icon-chevron-down.svg';
 import './TaskModal.css';
 import { useState, useRef, useEffect } from "react";
 import BoardsSlice from "../../redux/BoardsSlice";
-import AddEditTaskModalToggleSlice from "../../redux/AddEditTaskModalToggleSlice";
-import AddEditTaskModalTypeSlice from "../../redux/AddEditTaskModalTypeSlice";
-import DeleteModalToggleSlice from "../../redux/DeleteModalToggleSlice";
-import DeleteModalTypeSlice from "../../redux/DeleteModalTypeSlice";
+import AddEditTaskModal from '../addEditTaskModal/AddEditTaskModal';
+import DeleteModal from "../deleteModal/DeleteModal";
 
-const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
+const TaskModal = ({ columnIndex, taskIndex, setTaskModalOpen }) => {
     const dispatch = useDispatch();
+    const [addEditTaskModalOpen, setAddEditTaskModalOpen] = useState(false);
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
     const boards = useSelector((state) => state.boards);
     const activeBoardIndex = useSelector((state) => state.activeBoardIndex);
     const activeBoard = boards[activeBoardIndex];
     const [completedTasksCount, setCompletedTasksCount] = useState(0);
     const [statusUnfolded, setStatusUnfolded] = useState(true);
-    const [columnIndex, setColumnIndex] = useState(currentColumnIndex);
-    const [taskIndex, setTaskIndex] = useState(currentTaskIndex);
     const [isEllipsisMenuOpen, setIsEllipsisMenuOpen] = useState(false);
+
+    const [newStatusIndex, setNewStatusIndex] = useState(columnIndex);
 
     const ellipsisModalRef = useRef(null);
     const ellipsisImgRef = useRef(null);
 
     const clickOnOutside = (e) => {
-        console.log('clickOn');
         const element = e.target;
 
         if (!ellipsisImgRef.current?.contains(element) && !ellipsisModalRef.current?.contains(element)) {
@@ -39,20 +38,17 @@ const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
     
     const ellipsisMenuControl = () => {
         if (isEllipsisMenuOpen === false) {
-            console.log('add');
             document.body.addEventListener("click", clickOnOutsideRef.current);
         } else {
-            console.log('remove');
             document.body.removeEventListener("click", clickOnOutsideRef.current);
         }
         setIsEllipsisMenuOpen(!isEllipsisMenuOpen);
     };
 
-
     const board = {
         name: activeBoard.columns[columnIndex].tasks[taskIndex].title,
         description: activeBoard.columns[columnIndex].tasks[taskIndex].description,
-        status: activeBoard.columns[columnIndex].name,
+        status: activeBoard.columns[newStatusIndex].name,
         subtasks: activeBoard.columns[columnIndex].tasks[taskIndex].subtasks
     }
 
@@ -60,40 +56,51 @@ const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
     const completedTasksNum = completedTasks.length;
 
     const taskModalToggleClick = () => {
-        dispatch(TaskModalToggleSlice.actions.toggleTaskModal());
+        statusChangeClick();
+        setTaskModalOpen((state) => !state);
         if (isEllipsisMenuOpen === true) {
             ellipsisMenuControl();
-        }
+        } 
     }
 
     const checkboxOnChangeHandler = (boardIndex, columnIndex, taskIndex, subtaskIndex, isCompleted) => {
         dispatch(BoardsSlice.actions.setSubtaskIsCompleted({ boardIndex: boardIndex, 
-                                                                columnIndex: columnIndex,
-                                                                taskIndex: taskIndex,
-                                                                subtaskIndex: subtaskIndex,
-                                                                isCompleted: isCompleted }));
+                                                             columnIndex: columnIndex,
+                                                             taskIndex: taskIndex,
+                                                             subtaskIndex: subtaskIndex,
+                                                             isCompleted: isCompleted }));
     }
 
-    const statusChangeClick = (boardIndex, columnIndex, taskIndex, statusIndex) => {
-        setStatusUnfolded(!statusUnfolded);
-        dispatch(BoardsSlice.actions.setTaskStatus({ boardIndex: boardIndex, 
-                                                        columnIndex: columnIndex,
-                                                        taskIndex: taskIndex,
-                                                        statusIndex: statusIndex })); 
-        setColumnIndex(statusIndex);
-        setTaskIndex(activeBoard.columns[statusIndex].tasks.length);      
+    const statusChangeClick = () => {
+        if (columnIndex === newStatusIndex) {
+            return;
+        }
+        dispatch(BoardsSlice.actions.setTaskStatus({ boardIndex: activeBoardIndex, 
+                                                     columnIndex: columnIndex,
+                                                     taskIndex: taskIndex,
+                                                     statusIndex: newStatusIndex }));     
     }
 
     const addEditTaskModalToggleClick = () => {
-        taskModalToggleClick();
-        dispatch(AddEditTaskModalToggleSlice.actions.toggleAddEditTaskModal());
-        dispatch(AddEditTaskModalTypeSlice.actions.changeEditType());
+        setAddEditTaskModalOpen((state) => !state);
+        if (isEllipsisMenuOpen === true) {
+            ellipsisMenuControl();
+        } 
     }
 
     const deleteModalToggleClick = () => {
-        taskModalToggleClick();
-        dispatch(DeleteModalToggleSlice.actions.toggledeleteModal());
-        dispatch(DeleteModalTypeSlice.actions.changeTaskType());
+        setDeleteModalOpen((state) => !state);
+        if (isEllipsisMenuOpen === true) {
+            ellipsisMenuControl();
+        } 
+    }
+
+    const deleteTaskClick = () => {
+        setTaskModalOpen((state) => !state);
+        setDeleteModalOpen((state) => !state);
+        dispatch(BoardsSlice.actions.deleteTask({ boardIndex: activeBoardIndex, 
+                                                    columnIndex: columnIndex, 
+                                                    taskIndex: taskIndex }));
     }
 
     useEffect(() => {
@@ -131,13 +138,13 @@ const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
                                     className="edit"
                                     onClick={ addEditTaskModalToggleClick }
                                 >
-                                    <p>Edit Board</p>
+                                    <p>Edit Task</p>
                                 </button>
                                 <button 
                                     className="delete"
                                     onClick={ deleteModalToggleClick }
                                 >
-                                    <p>Delete Board</p>
+                                    <p>Delete Task</p>
                                 </button>
                             </div>
                         }
@@ -157,21 +164,15 @@ const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
                                     <div 
                                         key={ subtaskIndex }
                                         className="subtask"
-                                        onClick={ () => checkboxOnChangeHandler(activeBoardIndex, 
-                                                                                    columnIndex, 
-                                                                                    taskIndex, 
-                                                                                    subtaskIndex, 
+                                        onClick={ () => checkboxOnChangeHandler(activeBoardIndex, columnIndex, taskIndex, subtaskIndex, 
                                                                                     !board.subtasks[subtaskIndex].isCompleted
-                                                                                ) 
+                                                                               ) 
                                                 }
                                     >
                                         <input 
                                             type="checkbox" 
                                             checked={ board.subtasks[subtaskIndex].isCompleted } 
-                                            onChange={ () => checkboxOnChangeHandler(activeBoardIndex, 
-                                                                                        columnIndex, 
-                                                                                        taskIndex, 
-                                                                                        subtaskIndex, 
+                                            onChange={ () => checkboxOnChangeHandler(activeBoardIndex, columnIndex, taskIndex, subtaskIndex, 
                                                                                         !board.subtasks[subtaskIndex].isCompleted
                                                                                     ) 
                                                      }
@@ -204,7 +205,10 @@ const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
                                 return (
                                     <li 
                                         key={ statusIndex }
-                                        onClick={() => statusChangeClick(activeBoardIndex, columnIndex, taskIndex, statusIndex)}
+                                        onClick={() => { 
+                                                    setNewStatusIndex(statusIndex);
+                                                    setStatusUnfolded((state) => !state); 
+                                                }}
                                     >
                                         <p>{ column.name }</p>
                                     </li>
@@ -214,6 +218,9 @@ const TaskModal = ({ currentColumnIndex, currentTaskIndex }) => {
                     </ul>
                 </div>
             </div>
+
+            { addEditTaskModalOpen && <AddEditTaskModal type='edit' columnIndex={ columnIndex } taskIndex={ taskIndex } setAddEditTaskModalOpen={ setAddEditTaskModalOpen } /> } 
+            { deleteModalOpen && <DeleteModal type='task' columnIndex={ columnIndex } taskIndex={ taskIndex } deleteClick={ deleteTaskClick } setDeleteModalOpen={ setDeleteModalOpen } /> }       
         </div>
     )
 }

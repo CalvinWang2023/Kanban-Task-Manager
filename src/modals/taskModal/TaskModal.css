@@ -8,7 +8,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 10;
+    z-index: 100;
 }
 
 .task-modal-container .modal {
@@ -30,7 +30,6 @@
     border: 1px var(--dark-sidebar-color) solid;
     background-color: var(--dark-sidebar-color);
 }
-
 
 .task-modal-container .modal .task-header {
     display: flex;
@@ -143,6 +142,13 @@
     text-decoration: line-through;
 }
 
+
+
+.task-modal-container .modal .status {
+    display: flex;
+    flex-direction: column;
+}
+
 .task-modal-container .modal .status .status-title {
     font-weight: 700;
     font-size: .8rem;
@@ -199,7 +205,7 @@
 }
 .dark .task-modal-container .modal .status ul li:hover p  {
     color: var(--text-color);
-}
+} 
 
 /*********************** ellipsis menu ***************************/
 
@@ -240,7 +246,7 @@
 .task-modal-container .ellipsis .ellipsis-menu .delete {
     color: var(--delete-color);
     font-weight: 700;
-}
+} 
 
 @media only screen and (max-width: 768px) {
     .task-modal-container .modal .task-header {
@@ -255,5 +261,19 @@
     .task-modal-container .modal .status .status-content {
         width: 270px;
     }
-    
 }
+
+.task-modal-container .modal::-webkit-scrollbar {
+    max-width: 0.45rem; 
+}
+
+.task-modal-container .modal::-webkit-scrollbar-track {
+    background-color: var(--color-black);
+    border-radius: 6px;
+    margin: 3px;
+}
+.task-modal-container .modal::-webkit-scrollbar-thumb {
+    background-color: #2D68F0;
+    border-radius: 6px;
+    margin: 3px;
+} 

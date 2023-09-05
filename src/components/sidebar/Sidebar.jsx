@@ -2,18 +2,21 @@ import { useDispatch, useSelector } from "react-redux";
 import iconBoard from "../../assets/icon-board.svg";
 import ActiveBoardSlice from "../../redux/ActiveBoardSlice";
 import SidebarToggleSlice from "../../redux/SidebarToggleSlice";
-import BoardModalToggleSlice from "../../redux/BoardModalToggleSlice";
-import BoardModalTypeSlice from "../../redux/BoardModalTypeSlice";
 import sidebarHide from "../../assets/icon-hide-sidebar.svg";
 import sidebarShow from "../../assets/icon-show-sidebar.svg";
 import iconLight from "../../assets/icon-light-theme.svg";
 import iconDark from "../../assets/icon-dark-theme.svg";
 import './Sidebar.css';
+import { useState } from "react";
+import AddEditBoardModal from "../../modals/addEditBoardModal/AddEditBoardModal";
 
 const Sidebar = ({ theme, setTheme }) => {
     const boards = useSelector((state) => state.boards);
     const activeBoard = useSelector((state) => state.activeBoardIndex);
     const sidebarToggle = useSelector((state) => state.sidebarToggle);
+
+    const [boardModalOpen, setBoardModalOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
 	const handleThemeChanged = () => {
 		setTheme((prevTheme) => {
@@ -31,8 +34,7 @@ const Sidebar = ({ theme, setTheme }) => {
     };
 
     const boardModalToggleClick = () => {
-        dispatch(BoardModalToggleSlice.actions.toggleBoardModal());
-        dispatch(BoardModalTypeSlice.actions.changeAddType());
+        setBoardModalOpen((state) => !state);
     }
 
     return (            
@@ -69,13 +71,6 @@ const Sidebar = ({ theme, setTheme }) => {
                             <p>+ Create New Board</p>
                         </button>
                     </div>
-                    <div
-                        className="sidebar-hide"
-                        onClick={sidebarHideClick}
-                    >
-                        <img src={sidebarHide} alt="hide sidebar icon" />
-                        <p>Hide Sidebar</p>
-                    </div>
                     <div className="switch">
                         <div className="bright-pic">
                             <img src={ iconLight } alt="bright mode icon" />
@@ -97,6 +92,13 @@ const Sidebar = ({ theme, setTheme }) => {
                             <img src={ iconDark } alt="dark mode icon" />
                         </div>
 				    </div>
+                    <div
+                        className="sidebar-hide"
+                        onClick={sidebarHideClick}
+                    >
+                        <img src={sidebarHide} alt="hide sidebar icon" />
+                        <p>Hide Sidebar</p>
+                    </div>
                 </div>
             }
             {
@@ -108,6 +110,7 @@ const Sidebar = ({ theme, setTheme }) => {
                     <img src={sidebarShow} alt="show sidebar icon" />
                 </div>
             }
+            { boardModalOpen && <AddEditBoardModal type='add' setBoardModalOpen={ setBoardModalOpen } /> }
         </div>
     )
 }

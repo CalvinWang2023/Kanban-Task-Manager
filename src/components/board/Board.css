@@ -12,7 +12,7 @@
     border-left: 1.5px var(--dark-board-color) solid;
 }
 
-.full-screen {
+.board-full-screen {
     margin-left: 0;
 }
 
@@ -41,7 +41,7 @@
     width: 270px;
 }
 
-.board-container .board li button {
+.board-container .board li #add-new-col {
     height: 100%;
     width: 270px;
     border: none;
@@ -51,34 +51,34 @@
     cursor: pointer;
 }
 
-.dark .board-container .board li button {
+.dark .board-container .board li #add-new-col {
     background-color: var(--dark-sidebar-color);
     color: var(--text-color);
 }
 
-.board-container .board li button:hover h2 {
+.board-container .board li #add-new-col:hover h2 {
     color: var(--button-color);
 }
 
-.board-container .board li .add-new-col {
+.board-container .board li .hidden {
     visibility: hidden;
 }
 
-.board-container .board li .status {
+.board-container .board li .col-name {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 16px;
     width: 270px;
-}
-.board-container .board li .status-text {
+} 
+.board-container .board li .col-name-text {
     font-weight: 700;
     color: var(--sidebar-color);
     letter-spacing: 1.1px;
     font-size: .9rem;
     
 }
-.board-container .board li .status-color {
+.board-container .board li .col-name-color {
     width: 16px;
     height: 16px;
     border-radius: 50%;
@@ -100,25 +100,25 @@
     box-shadow: 2px 2px 6px var(--dark-card-shadow-color);
 }
 
-.board-container .board li .card .title {
+.board-container .board li .card .card-title {
     font-weight: 700;
     font-size: 1rem;
     color: var(--black-text-color);
 }
-.dark .board-container .board li .card .title {
+.dark .board-container .board li .card .card-title {
     color: var(--text-color);
 }
 
-.board-container .board li .card:hover .title {
+.board-container .board li .card:hover .card-title {
     color: var(--button-color);
 }
 
-.board-container .board li .card .subtask {
+.board-container .board li .card .card-subtask {
     font-weight: 700;
     color: var(--sidebar-color);
     font-size: .85rem;
 }
-.dark .board-container .board li .card .subtask {
+.dark .board-container .board li .card .card-subtask {
     color: var(--dark-sidebar-text-color);
 }
 
@@ -126,4 +126,8 @@
     .board-container { 
         margin-left: 0;
     }
+}
+
+.board-container .board::-webkit-scrollbar {
+    display: none;
 }

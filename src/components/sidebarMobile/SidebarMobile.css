@@ -1,4 +1,4 @@
-.sidebar-mobile-modal-container {
+.sidebar-mobile-container {
     color: var(--sidebar-color);
     display: flex;
     justify-content: center;
@@ -12,7 +12,7 @@
     z-index: 10;
 }
 
-.sidebar-mobile-modal-container .modal {
+.sidebar-mobile-container .modal {
     border: 1px var(--text-color) solid;
     background-color: var(--text-color);
     border-radius: 8px;
@@ -28,23 +28,23 @@
 
     padding-bottom: 16px;
 }
-.dark .sidebar-mobile-modal-container .modal {
+.dark .sidebar-mobile-container .modal {
     border: 1px var(--dark-sidebar-color) solid;
     background-color: var(--dark-sidebar-color);
 }
 
-.sidebar-mobile-modal-container .modal .summary {
+.sidebar-mobile-container .modal .summary {
     margin-bottom: 30px;
     margin-top: 22px;
     margin-left: 25px;
 }
-.sidebar-mobile-modal-container .modal .summary p {
+.sidebar-mobile-container .modal .summary p {
     font-weight: 700;
     font-size: .8rem;
     letter-spacing: 1.3px;
 }
 
-.sidebar-mobile-modal-container .modal ul {
+.sidebar-mobile-container .modal ul {
     list-style: none;
     
     display: flex;
@@ -55,7 +55,7 @@
     max-height: 390px;
 }
 
-.sidebar-mobile-modal-container .modal ul .board-section {
+.sidebar-mobile-container .modal ul .board-section {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -69,7 +69,7 @@
     cursor: pointer;
 }
 
-.sidebar-mobile-modal-container .modal .add-board-button button {
+.sidebar-mobile-container .modal .add-board-button button {
     width: 260px;
     display: flex;
     flex-direction: row;
@@ -88,41 +88,41 @@
     cursor: pointer;
 }
 
-.sidebar-mobile-modal-container .modal .add-board-button button p {
+.sidebar-mobile-container .modal .add-board-button button p {
     font-weight: 700;
 }
 
-.sidebar-mobile-modal-container .modal .add-board-button button img {
+.sidebar-mobile-container .modal .add-board-button button img {
     filter: invert(56%) sepia(58%) saturate(5507%) hue-rotate(220deg) brightness(88%) contrast(77%); 
 }
 
-.sidebar-mobile-modal-container .modal .add-board-button button:hover {
+.sidebar-mobile-container .modal .add-board-button button:hover {
     background-color: var(--sidebar-hover-color);
 }
 
-.sidebar-mobile-modal-container .modal ul .board-section p {
+.sidebar-mobile-container .modal ul .board-section p {
     font-weight: 700;
 }
 
-.sidebar-mobile-modal-container .modal ul .board-section:hover {
+.sidebar-mobile-container .modal ul .board-section:hover {
     background-color: var(--sidebar-hover-color);
     color: var(--button-color);
 }
-.sidebar-mobile-modal-container .modal ul .board-section:hover img {
+.sidebar-mobile-container .modal ul .board-section:hover img {
     filter: invert(56%) sepia(58%) saturate(5507%) hue-rotate(220deg) brightness(88%) contrast(77%); 
 }
 
-.sidebar-mobile-modal-container .modal ul .active-board {
+.sidebar-mobile-container .modal ul .active-board {
     background-color: var(--button-color);
     color: var(--text-color);
 }
-.sidebar-mobile-modal-container .modal ul .active-board img {
+.sidebar-mobile-container .modal ul .active-board img {
     filter: brightness(2);
 }
 
 /*********************************** switch *****************************/
 
-.sidebar-mobile-modal-container .modal .switch {
+.sidebar-mobile-container .modal .switch {
     margin-top: 16px;
     display: flex;
     flex-direction: row;
@@ -137,16 +137,16 @@
 
     background-color: var(--board-bg-color);
 }
-.dark .sidebar-mobile-modal-container .modal .switch {
+.dark .sidebar-mobile-container .modal .switch {
     background-color: var(--dark-board-color);
 }
 
-.sidebar-mobile-modal-container .modal .switch .checkbox {
+.sidebar-mobile-container .modal .switch .checkbox {
     opacity: 0;
     position: absolute;
 }
 
-.sidebar-mobile-modal-container .modal .switch .checkbox-label {
+.sidebar-mobile-container .modal .switch .checkbox-label {
     background-color: gray;
     display: flex;
     padding: 5px;
@@ -157,11 +157,11 @@
     cursor: pointer;
 }
 
-.dark .sidebar-mobile-modal-container .modal .switch .checkbox-label {
+.dark .sidebar-mobile-container .modal .switch .checkbox-label {
     background-color: var(--button-color);
 }
 
-.sidebar-mobile-modal-container .modal .switch .checkbox-label .ball {
+.sidebar-mobile-container .modal .switch .checkbox-label .ball {
     background-color: white;
     height: 15px;
     width: 15px;
@@ -173,6 +173,10 @@
     transition: transform .2s linear;
 }
 
-.sidebar-mobile-modal-container .modal .switch .checkbox-label .move {
+.sidebar-mobile-container .modal .switch .checkbox-label .move {
     transform: translateX(22px);
+}
+
+.sidebar-mobile-container .modal ul::-webkit-scrollbar {
+    display: none;
 }

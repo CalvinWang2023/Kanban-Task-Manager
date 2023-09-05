@@ -1,104 +1,43 @@
-import { useDispatch, useSelector } from 'react-redux';
-import './Board.css';
-import AddEditBoardModal from "../../modals/addEditBoardModal/AddEditBoardModal";
-import TaskModal from '../../modals/taskModal/TaskModal';
-import AddEditTaskModal from '../../modals/addEditTaskModal/AddEditTaskModal';
-import BoardModalToggleSlice from "../../redux/BoardModalToggleSlice";
-import TaskModalToggleSlice from '../../redux/TaskModalToggleSlice';
-import BoardModalTypeSlice from "../../redux/BoardModalTypeSlice";
-import DeleteModal from '../../modals/deleteModal/DeleteModal';
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import './Board.css';
+import Column from './Column';
+import AddEditBoardModal from '../../modals/addEditBoardModal/AddEditBoardModal';
 
 const Board = () => {
     const sidebarToggle = useSelector((state) => state.sidebarToggle);
-    const boardModalToggle = useSelector((state) => state.boardModalToggle);
-    const taskModalToggle = useSelector((state) => state.taskModalToggle);
-    const AddEditTaskModalToggle = useSelector((state) => state.addEditTaskModalToggle);
     const boards = useSelector((state) => state.boards);
     const activeBoardIndex = useSelector((state) => state.activeBoardIndex);
-    const boardModalType = useSelector((state) => state.boardModalType);
-    const addEditTaskModalType = useSelector((state) => state.addEditTaskModalType);
-    const deleteModalToggle = useSelector((state) => state.deleteModalToggle);
-    const deleteModalType = useSelector((state) => state.deleteModalType);
     const activeBoard = boards[activeBoardIndex];
-    const [columnIndex, setColumnIndex] = useState();
-    const [taskIndex, setTaskIndex] = useState();
-    const dispatch = useDispatch();
-
-    const statusColors = [
-        "#33FFD8", // Teal
-        "#FFA733", // Orange 
-        "#A033FF", // Purple
-        "#FF33A6", // Pink
-        "#FFFF33", // Yellow
-        "#33FF77", // Green
-        "#FF5733", // Red
-        "#3388FF" // Blue
-    ];
+    const [boardModalOpen, setBoardModalOpen] = useState(false);
 
     const boardModalToggleClick = () => {
-        dispatch(BoardModalToggleSlice.actions.toggleBoardModal());
-        dispatch(BoardModalTypeSlice.actions.changeEditType());
-    }
-
-    const taskModalToggleClick = (columnIndex, taskIndex) => {
-        dispatch(TaskModalToggleSlice.actions.toggleTaskModal());
-        setColumnIndex(columnIndex);
-        setTaskIndex(taskIndex);
+        setBoardModalOpen((state) => !state);
     }
 
     return (
         <>
-            <div className={sidebarToggle ? 'board-container full-screen' : 'board-container' }>
+            <div className={sidebarToggle ? 'board-container board-full-screen' : 'board-container' }>
                 <ul className='board'>
                     {
-                        activeBoard.columns.map((column, columnIndex) => {
+                        activeBoard.columns.map((column, index) => {
                             return (
-                                <li key={ columnIndex }>
-                                    <div className="status">
-                                        <span className="status-color" style={{backgroundColor: statusColors[columnIndex % 8]}}></span>
-                                        <p className='status-text'>{column.name} ({column.tasks.length})</p>
-                                    </div>
-                                    {
-                                        column.tasks.map((task, taskIndex) => { 
-                                            let subTaskCompletedNum = 0;  
-                                            return (
-                                                <div 
-                                                    className="card" 
-                                                    key={ taskIndex }
-                                                    onClick={ () => taskModalToggleClick(columnIndex, taskIndex) }
-                                                >
-                                                    <p className='title'>{ task.title }</p> 
-                                                    {
-                                                        task.subtasks.map((subtask) => {                 
-                                                            if (subtask.isCompleted === true) {
-                                                                subTaskCompletedNum++;
-                                                            }
-                                                        })
-                                                    }
-                                                    <p className='subtask'>{subTaskCompletedNum} of {task.subtasks.length} subtasks</p>
-                                                </div>
-                                            )
-                                        }) 
-                                    }
+                                <li key={ index }>
+                                    <Column column={ column } columnIndex={ index } />
                                 </li>
                             )
                         })
                     }
                     
                     <li>
-                        <p className='status add-new-col'>Add New Column</p>
-                        <button onClick={ boardModalToggleClick }>
+                        <p className='col-name hidden'>Add New Column</p>
+                        <button id='add-new-col' onClick={ boardModalToggleClick }>
                             <h2>+ New Column</h2>
                         </button>
                     </li>
                 </ul>
+                { boardModalOpen && <AddEditBoardModal type='edit' setBoardModalOpen={ setBoardModalOpen } /> }
             </div>
-
-            { boardModalToggle && <AddEditBoardModal type={ boardModalType } /> }
-            { taskModalToggle && <TaskModal currentColumnIndex={ columnIndex } currentTaskIndex={ taskIndex } /> }
-            { AddEditTaskModalToggle && <AddEditTaskModal type={ addEditTaskModalType } columnIndex={ columnIndex } taskIndex={ taskIndex }  /> } 
-            { deleteModalToggle && <DeleteModal type={ deleteModalType } columnIndex={ columnIndex } taskIndex={ taskIndex } /> }
         </>
     )
 }

@@ -1,20 +1,20 @@
 import './SidebarMobile.css';
-import SidebarMobileToggleSlice from '../../redux/SidebarMobileToggleSlice';
 import ActiveBoardSlice from '../../redux/ActiveBoardSlice';
-import BoardModalToggleSlice from '../../redux/BoardModalToggleSlice';
-import BoardModalTypeSlice from '../../redux/BoardModalTypeSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import iconBoard from "../../assets/icon-board.svg";
 import iconLight from "../../assets/icon-light-theme.svg";
 import iconDark from "../../assets/icon-dark-theme.svg";
+import { useState } from 'react';
 
-const SidebarMobile = ({ theme, setTheme }) => {
+const SidebarMobile = ({ theme, setTheme, setSidebarMobileOpen }) => {
     const dispatch = useDispatch();
     const boards = useSelector((state) => state.boards);
     const activeBoard = useSelector((state) => state.activeBoardIndex);
+    
+    const [boardModalOpen, setBoardModalOpen] = useState(false);
 
     const sidebarMobileToggleClick = () => {
-        dispatch(SidebarMobileToggleSlice.actions.toggleSidebarMobile());
+        setSidebarMobileOpen((state) => !state);
     }
 
     const changeBoardClick = (index) => {
@@ -22,8 +22,7 @@ const SidebarMobile = ({ theme, setTheme }) => {
     };
 
     const boardModalToggleClick = () => {
-        dispatch(BoardModalToggleSlice.actions.toggleBoardModal());
-        dispatch(BoardModalTypeSlice.actions.changeAddType());
+        setBoardModalOpen((state) => !state);
     }
 
     const handleThemeChanged = () => {
@@ -34,7 +33,7 @@ const SidebarMobile = ({ theme, setTheme }) => {
 
     return (
         <div
-            className="sidebar-mobile-modal-container dimmed"
+            className="sidebar-mobile-container dimmed"
             onClick={(e) => {
                 if (e.target !== e.currentTarget) {
                     return;
@@ -94,6 +93,7 @@ const SidebarMobile = ({ theme, setTheme }) => {
                     </div>
                 </div>
             </div>
+            { boardModalOpen && <AddEditBoardModal type='add' setBoardModalOpen={ setBoardModalOpen } /> }
         </div>
     )
 }

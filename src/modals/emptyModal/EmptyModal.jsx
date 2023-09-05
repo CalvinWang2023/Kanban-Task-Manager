@@ -1,17 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import AddEditBoardModal from "../addEditBoardModal/AddEditBoardModal";
-import BoardModalToggleSlice from "../../redux/BoardModalToggleSlice";
-import BoardModalTypeSlice from "../../redux/BoardModalTypeSlice";
 import './EmptyModal.css';
 
 const EmptyModal = () => {
-    const dispatch = useDispatch();
-    const boardModalToggle = useSelector((state) => state.boardModalToggle);
-    const boardModalType = useSelector((state) => state.boardModalType);
+    const [boardModalOpen, setBoardModalOpen] = useState(false);
 
     const boardModalToggleClick = () => {
-        dispatch(BoardModalToggleSlice.actions.toggleBoardModal());
-        dispatch(BoardModalTypeSlice.actions.changeAddType())
+        setBoardModalOpen((state) => !state);
     }
 
     return (
@@ -29,9 +24,8 @@ const EmptyModal = () => {
                     </button>
                 </div>
             </div>
-            { boardModalToggle && <AddEditBoardModal type={ boardModalType } /> }
+            { boardModalOpen && <AddEditBoardModal type='add' setBoardModalOpen={ setBoardModalOpen } /> }
         </div>
-
     )
 }
 
