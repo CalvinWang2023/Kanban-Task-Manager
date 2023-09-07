@@ -13,7 +13,7 @@ const DeleteModal = ({ type, columnIndex, taskIndex, deleteClick, setDeleteModal
                 if (e.target !== e.currentTarget) {
                     return;
                 }
-                deleteModalToggleClick();
+                setDeleteModalOpen((state) => !state);
             }}
         >
             <div className="modal">

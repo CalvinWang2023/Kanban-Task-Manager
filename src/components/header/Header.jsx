@@ -12,6 +12,8 @@ import SidebarMobile from "../sidebarMobile/SidebarMobile";
 import DeleteModal from "../../modals/deleteModal/DeleteModal";
 import AddEditBoardModal from "../../modals/addEditBoardModal/AddEditBoardModal";
 import BoardsSlice from "../../redux/BoardsSlice";
+import ActiveBoardSlice from "../../redux/ActiveBoardSlice";
+import EllipsisMenu from "../ellipsisMenu/EllipsisMenu";
 
 const Header = ({ theme, setTheme }) => {
     const dispatch = useDispatch();
@@ -70,6 +72,7 @@ const Header = ({ theme, setTheme }) => {
 
     const deleteBoardClick = () => {
         setDeleteModalOpen((state) => !state);
+        dispatch(ActiveBoardSlice.actions.changeActiveBoardIndex({ boardIndex: activeBoardIndex !== 0 ? activeBoardIndex - 1 : activeBoardIndex }));
         dispatch(BoardsSlice.actions.deleteBoard({ boardIndex: activeBoardIndex }));
     }
 
@@ -83,11 +86,13 @@ const Header = ({ theme, setTheme }) => {
                     </div>
                     <div className={ !sidebarToggle ? "board-name-container" : "board-name-container full-screen" }>
                         <h4>{ activeBoard.name }</h4>
-                        { !isBigScreen && <img 
-                                                src={ sidebarMobileOpen ? chevronUp : chevronDown } 
-                                                onClick={ sidebarMobileToggleClick } 
-                                                className="chevron"
-                                                alt="chevron up/down" /> 
+                        { !isBigScreen && 
+                            <img 
+                                src={ sidebarMobileOpen ? chevronUp : chevronDown } 
+                                onClick={ sidebarMobileToggleClick } 
+                                className="chevron"
+                                alt="chevron up/down" 
+                            /> 
                         }
                     </div>                    
                 </div>      
@@ -97,10 +102,9 @@ const Header = ({ theme, setTheme }) => {
                         disabled={ activeBoard.columns.length <= 0 }
                         className="add-task"
                     >   
-                        {
-                            isBigScreen ? 
-                                <p>+ Add New Task</p> 
-                                : <img src={ addSign } alt="add icon" />     
+                        { isBigScreen ? 
+                            <p>+ Add New Task</p> 
+                            : <img src={ addSign } alt="add icon" />     
                         }
                     </button>
                     <div className="ellipsis" ref={ellipsisImgRef}>
@@ -117,20 +121,7 @@ const Header = ({ theme, setTheme }) => {
                 </div>
             </header>
             { isEllipsisMenuOpen &&
-                <div className="ellipsis-menu" ref={ellipsisModalRef}>
-                    <button 
-                        className="edit"
-                        onClick={ boardModalToggleClick }
-                    >
-                        <p>Edit Board</p>
-                    </button>
-                    <button 
-                        className="delete"
-                        onClick={ deleteModalToggleClick }
-                    >
-                        <p>Delete Board</p>
-                    </button>
-                </div>
+                <EllipsisMenu ellipsisModalRef={ ellipsisModalRef } editModalToggleClick={ boardModalToggleClick } deleteModalToggleClick={ deleteModalToggleClick } />
             }
             { sidebarMobileOpen && !isBigScreen &&
                 <SidebarMobile theme = { theme } setTheme = { setTheme } setSidebarMobileOpen={ setSidebarMobileOpen } /> 

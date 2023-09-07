@@ -7,6 +7,7 @@ import { useState, useRef, useEffect } from "react";
 import BoardsSlice from "../../redux/BoardsSlice";
 import AddEditTaskModal from '../addEditTaskModal/AddEditTaskModal';
 import DeleteModal from "../deleteModal/DeleteModal";
+import EllipsisMenu from "../../components/ellipsisMenu/EllipsisMenu";
 
 const TaskModal = ({ columnIndex, taskIndex, setTaskModalOpen }) => {
     const dispatch = useDispatch();
@@ -99,8 +100,8 @@ const TaskModal = ({ columnIndex, taskIndex, setTaskModalOpen }) => {
         setTaskModalOpen((state) => !state);
         setDeleteModalOpen((state) => !state);
         dispatch(BoardsSlice.actions.deleteTask({ boardIndex: activeBoardIndex, 
-                                                    columnIndex: columnIndex, 
-                                                    taskIndex: taskIndex }));
+                                                  columnIndex: columnIndex, 
+                                                  taskIndex: taskIndex }));
     }
 
     useEffect(() => {
@@ -131,22 +132,8 @@ const TaskModal = ({ columnIndex, taskIndex, setTaskModalOpen }) => {
                             />
                         </button>
 
-                        {
-                            isEllipsisMenuOpen &&
-                            <div className="ellipsis-menu" ref={ellipsisModalRef}>
-                                <button 
-                                    className="edit"
-                                    onClick={ addEditTaskModalToggleClick }
-                                >
-                                    <p>Edit Task</p>
-                                </button>
-                                <button 
-                                    className="delete"
-                                    onClick={ deleteModalToggleClick }
-                                >
-                                    <p>Delete Task</p>
-                                </button>
-                            </div>
+                        { isEllipsisMenuOpen &&
+                            <EllipsisMenu ellipsisModalRef={ ellipsisModalRef } editModalToggleClick={ addEditTaskModalToggleClick } deleteModalToggleClick={ deleteModalToggleClick } />
                         }
                     </div>
                 </div>
@@ -158,8 +145,7 @@ const TaskModal = ({ columnIndex, taskIndex, setTaskModalOpen }) => {
                         { `Subtasks (${ completedTasksCount } of ${ board.subtasks.length })` } 
                     </p>
                     <div className="subtask-list">
-                        {
-                            board.subtasks.map((subtask, subtaskIndex) => {
+                        { board.subtasks.map((subtask, subtaskIndex) => {
                                 return (
                                     <div 
                                         key={ subtaskIndex }
@@ -199,8 +185,7 @@ const TaskModal = ({ columnIndex, taskIndex, setTaskModalOpen }) => {
                         />
                     </div>
                     <ul>
-                        {
-                            !statusUnfolded &&
+                        { !statusUnfolded &&
                             activeBoard.columns.map((column, statusIndex) => {
                                 return (
                                     <li 

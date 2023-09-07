@@ -18,8 +18,7 @@ const Column = ({ column, columnIndex }) => {
                 <span className="col-name-color" style={{backgroundColor: statusColors[columnIndex % 8]}}></span>
                 <p className='col-name-text'>{column.name} ({column.tasks.length})</p>
             </div>
-            {
-                column.tasks.map((task, index) => {  
+            {   column.tasks.map((task, index) => {  
                     return (
                         <Task key={ index } task={ task } columnIndex={ columnIndex } taskIndex={ index } />
                     )

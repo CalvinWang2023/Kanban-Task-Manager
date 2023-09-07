@@ -168,8 +168,7 @@ const AddEditTaskModal = ({ type, columnIndex, taskIndex, setAddEditTaskModalOpe
                         />
                     </div>
                     <ul>
-                        {
-                            !statusUnfolded &&
+                        {   !statusUnfolded &&
                             activeBoard.columns.map((column, index) => {
                                 return (
                                     <li 

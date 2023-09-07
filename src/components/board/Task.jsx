@@ -8,8 +8,6 @@ const Task = ({ task, columnIndex, taskIndex }) => {
         setTaskModalOpen((state) => !state);
     }
 
-    // console.log(`taskModalOpen: ${ taskModalOpen }`);
-
     return (
         <>
             <div 
@@ -17,8 +15,7 @@ const Task = ({ task, columnIndex, taskIndex }) => {
                 onClick={ () => taskModalToggleClick(columnIndex, taskIndex) }
             >
                 <p className='card-title'>{ task.title }</p> 
-                {
-                    task.subtasks.map((subtask) => {                 
+                {   task.subtasks.map((subtask) => {                 
                         if (subtask.isCompleted === true) {
                             subTaskCompletedNum++
                         }

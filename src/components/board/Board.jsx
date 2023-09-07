@@ -19,8 +19,7 @@ const Board = () => {
         <>
             <div className={sidebarToggle ? 'board-container board-full-screen' : 'board-container' }>
                 <ul className='board'>
-                    {
-                        activeBoard.columns.map((column, index) => {
+                    { activeBoard.columns.map((column, index) => {
                             return (
                                 <li key={ index }>
                                     <Column column={ column } columnIndex={ index } />

@@ -14,16 +14,14 @@ const App = () => {
 
     return (      
         <div className={`App ${ theme }`}>
-            {
-                boards.length > 0 &&
+            { boards.length > 0 &&
                 <section className="app-section">
                     <Header theme = { theme } setTheme = { setTheme } />
                     { isBigScreen && <Sidebar theme = { theme } setTheme = { setTheme } /> }
                     <Board /> 
                 </section>
             }
-            {
-                boards.length <= 0 &&
+            { boards.length <= 0 &&
                 <section className='empty-section'>
                     <EmptyModal />
                 </section>

@@ -16,7 +16,6 @@ const Sidebar = ({ theme, setTheme }) => {
     const sidebarToggle = useSelector((state) => state.sidebarToggle);
 
     const [boardModalOpen, setBoardModalOpen] = useState(false);
-    const [sidebarOpen, setSidebarOpen] = useState(false);
 
 	const handleThemeChanged = () => {
 		setTheme((prevTheme) => {
@@ -47,8 +46,7 @@ const Sidebar = ({ theme, setTheme }) => {
                     </div>
 
                     <ul>
-                        {
-                            boards.map((board, index) => {
+                        {   boards.map((board, index) => {
                                 return (
                                     <li
                                         key={index}
@@ -101,8 +99,7 @@ const Sidebar = ({ theme, setTheme }) => {
                     </div>
                 </div>
             }
-            {
-                sidebarToggle &&
+            {   sidebarToggle &&
                 <div
                     className="sidebar-open"
                     onClick={sidebarHideClick}

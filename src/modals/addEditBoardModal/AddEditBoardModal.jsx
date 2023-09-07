@@ -2,7 +2,7 @@ import './AddEditBoardModal.css';
 import { useDispatch, useSelector } from "react-redux";
 import BoardsSlice from '../../redux/BoardsSlice';
 import cross from '../../assets/icon-cross.svg';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const AddEditBoardModal = ({ type, setBoardModalOpen }) => {
     const dispatch = useDispatch();
@@ -14,18 +14,26 @@ const AddEditBoardModal = ({ type, setBoardModalOpen }) => {
     const [boardName, setBoardName] = useState('');
     const [columns, setColumns] = useState([{ name: '', tasks: [] }, { name: '', tasks: [] }]);
 
+    const [displayErrorMsg, setDisplayErrorMsg] = useState(false);
+    const inputRef = useRef(null);
+
     const boardModalToggleClick = () => {
         setBoardModalOpen((state) => !state);
     }
 
     const CreateBoardClick = () => {
+        if (boardName === '') {
+            setDisplayErrorMsg(true);
+            inputRef.current.focus();
+            return;
+        }
         const newColumns =  columns.filter((column) => column.name !== '');
         type === 'add' ? 
             dispatch(BoardsSlice.actions.addBoard({ name: boardName, 
-                                                        newColumns: newColumns }))
+                                                    newColumns: newColumns }))
             : dispatch(BoardsSlice.actions.editBoard({ name: boardName, 
-                                                        newColumns: newColumns, 
-                                                        index: activeBoardIndex }));
+                                                       newColumns: newColumns, 
+                                                       index: activeBoardIndex }));
         boardModalToggleClick();
     }
 
@@ -73,8 +81,10 @@ const AddEditBoardModal = ({ type, setBoardModalOpen }) => {
                         name="board-name" 
                         placeholder='e.g. Web Design'
                         value={ boardName }
-                        onChange={ (e) => setBoardName(e.target.value) } 
-                    />                    
+                        onChange={ (e) => setBoardName(e.target.value) }
+                        ref={ inputRef } 
+                    />     
+                    <p className={ displayErrorMsg ? 'errorMsg' : 'errorMsgCollpse' }>can't be empty</p>               
                 </div>
                 <div className='board-column-input'>
                     <label>Board Columns</label>
