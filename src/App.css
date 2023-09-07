@@ -34,6 +34,14 @@ body {
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
+.errorMsg {
+    color: var(--delete-color);
+    font-size: .9rem;
+}
+.errorMsgCollpse {
+    display: none;
+}
+
 body::-webkit-scrollbar {
     display: none;
 } 

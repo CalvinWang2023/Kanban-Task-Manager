@@ -84,7 +84,7 @@ const AddEditBoardModal = ({ type, setBoardModalOpen }) => {
                         onChange={ (e) => setBoardName(e.target.value) }
                         ref={ inputRef } 
                     />     
-                    <p className={ displayErrorMsg ? 'errorMsg' : 'errorMsgCollpse' }>can't be empty</p>               
+                    <span className={ displayErrorMsg ? 'errorMsg' : 'errorMsgCollpse' }>can't be empty</span>               
                 </div>
                 <div className='board-column-input'>
                     <label>Board Columns</label>

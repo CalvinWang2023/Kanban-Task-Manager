@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import BoardsSlice from "../../redux/BoardsSlice";
 import cross from '../../assets/icon-cross.svg';
 import chevronUp from '../../assets/icon-chevron-up.svg';
@@ -20,39 +20,52 @@ const AddEditTaskModal = ({ type, columnIndex, taskIndex, setAddEditTaskModalOpe
     const [statusIndex, setStatusIndex] = useState(0);
     const [originalStatusIndex, setOriginalStatusIndex] = useState();
 
+    const [displayErrorMsg, setDisplayErrorMsg] = useState(false);
+    const inputRef = useRef(null);
+
     const addEditTaskModalToggleClick = () => {
         setAddEditTaskModalOpen((state) => !state);
     }
 
     const statusChangeClick = (boardIndex, columnIndex, taskIndex, statusIndex) => {
         dispatch(BoardsSlice.actions.setTaskStatus({ boardIndex: boardIndex, 
-                                                        columnIndex: columnIndex,
-                                                        taskIndex: taskIndex,
-                                                        statusIndex: statusIndex }));     
+                                                     columnIndex: columnIndex,
+                                                     taskIndex: taskIndex,
+                                                     statusIndex: statusIndex }));     
     }
 
     const createTaskClick = () => {
+        if (taskName === '') {
+            setDisplayErrorMsg(true);
+            inputRef.current.focus();
+            return;
+        }
         addEditTaskModalToggleClick();
         const newSubtasks = subtasks.filter((subtask) => subtask.title !== '');
 
         dispatch(BoardsSlice.actions.addTask({ boardIndex: activeBoardIndex, 
-                                                columnIndex: statusIndex,
-                                                title: taskName,
-                                                description: taskDescription,
-                                                status: activeBoard.columns[statusIndex].name,
-                                                newSubtasks: newSubtasks }))
+                                               columnIndex: statusIndex,
+                                               title: taskName,
+                                               description: taskDescription,
+                                               status: activeBoard.columns[statusIndex].name,
+                                               newSubtasks: newSubtasks }))
     }
 
     const editTaskClick = () => {
+        if (taskName === '') {
+            setDisplayErrorMsg(true);
+            inputRef.current.focus();
+            return;
+        }
         addEditTaskModalToggleClick();
         const newSubtasks = subtasks.filter((subtask) => subtask.title !== '');
         dispatch(BoardsSlice.actions.editTask({ boardIndex: activeBoardIndex, 
-                    columnIndex: columnIndex,
-                    taskIndex: taskIndex,
-                    title: taskName,
-                    description: taskDescription,
-                    status: activeBoard.columns[statusIndex].name,
-                    subtasks: newSubtasks }));
+                 columnIndex: columnIndex,
+                 taskIndex: taskIndex,
+                 title: taskName,
+                 description: taskDescription,
+                 status: activeBoard.columns[statusIndex].name,
+                 subtasks: newSubtasks }));
         if (originalStatusIndex !== statusIndex) {
             statusChangeClick(activeBoardIndex, columnIndex, taskIndex, statusIndex);
         }
@@ -108,7 +121,9 @@ const AddEditTaskModal = ({ type, columnIndex, taskIndex, setAddEditTaskModalOpe
                         placeholder='e.g. Take Coffee break'
                         value={ taskName }
                         onChange={ (e) => setTaskName(e.target.value) } 
-                    />                    
+                        ref={ inputRef }
+                    />
+                    <span className={ displayErrorMsg ? 'errorMsg' : 'errorMsgCollpse' }>can't be empty</span>                      
                 </div>
                 <div className='task-description-input'>
                     <label htmlFor="task-description">Description</label>

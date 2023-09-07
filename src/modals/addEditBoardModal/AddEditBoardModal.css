@@ -74,6 +74,13 @@
     flex-direction: column;
     gap: 10px;
     width: 500px;
+    position: relative;
+}
+
+.addedit-board-modal-container .modal .board-name-input span {
+    position: absolute;
+    top: 55%;
+    right: 10px;
 }
 
 .addedit-board-modal-container .modal .board-column-input {

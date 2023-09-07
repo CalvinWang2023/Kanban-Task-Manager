@@ -81,6 +81,15 @@
     width: 500px;
 }
 
+.addedit-task-modal-container .modal .task-name-input {
+    position: relative;
+}
+.addedit-task-modal-container .modal .task-name-input span {
+    position: absolute;
+    top: 55%;
+    right: 10px;
+}
+
 /***********************************SUBTASK***************************************/
 
 
