@@ -8,9 +8,15 @@ const Task = ({ task, columnIndex, taskIndex }) => {
         setTaskModalOpen((state) => !state);
     }
 
+    const handleOnDrag = (e) => {
+        e.dataTransfer.setData("text", JSON.stringify({taskIndex, prevColIndex: columnIndex}));
+    }
+
     return (
         <>
             <div 
+                draggable
+                onDragStart={handleOnDrag}
                 className="card" 
                 onClick={ () => taskModalToggleClick(columnIndex, taskIndex) }
             >

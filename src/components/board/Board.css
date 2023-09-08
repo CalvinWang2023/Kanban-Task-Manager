@@ -41,6 +41,12 @@
     width: 270px;
 }
 
+.board-container .board li .column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .board-container .board li #add-new-col {
     height: 100%;
     width: 270px;

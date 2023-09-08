@@ -85,6 +85,13 @@ const BoardsSlice = createSlice({
             const activeTasks = activeColumn.tasks;    
             
             activeTasks.splice(payload.taskIndex, 1);
+        },
+        dragTask: (state, action) => {
+            const { activeBoardIndex, columnIndex, prevColIndex, taskIndex } = action.payload;
+            const board = state[activeBoardIndex];
+            const prevCol = board.columns.find((col, i) => i === prevColIndex);
+            const task = prevCol.tasks.splice(taskIndex, 1)[0];
+            board.columns.find((col, i) => i === columnIndex).tasks.push(task);
         }
     },
 });
