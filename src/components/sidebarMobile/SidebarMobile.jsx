@@ -5,6 +5,7 @@ import iconBoard from "../../assets/icon-board.svg";
 import iconLight from "../../assets/icon-light-theme.svg";
 import iconDark from "../../assets/icon-dark-theme.svg";
 import { useState } from 'react';
+import AddEditBoardModal from "../../modals/addEditBoardModal/AddEditBoardModal";
 
 const SidebarMobile = ({ theme, setTheme, setSidebarMobileOpen }) => {
     const dispatch = useDispatch();

@@ -34,7 +34,7 @@ const Sidebar = ({ theme, setTheme }) => {
 
     const boardModalToggleClick = () => {
         setBoardModalOpen((state) => !state);
-    }
+    };
 
     return (            
         <div className={ !sidebarToggle ? "sidebar-container" : "closed" }>

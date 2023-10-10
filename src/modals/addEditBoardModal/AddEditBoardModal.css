@@ -29,6 +29,7 @@
     
     max-height: 600px;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 .dark .addedit-board-modal-container .modal {
     border: 1px var(--dark-sidebar-color) solid;
@@ -145,16 +146,17 @@
 
 @media only screen and (max-width: 768px) {
     .addedit-board-modal-container .modal .board-name-input {
-        width: 270px;
+        width: 240px;
     }
     .addedit-board-modal-container .modal .board-column-input .column-task {
-        width: 270px;
+        width: 240px;
+        gap: 10px;
     }
     .addedit-board-modal-container .modal .board-column-input .column-task input {
         width: 245px;
     }
     .addedit-board-modal-container .modal button {
-        width: 270px;
+        width: 240px;
     }   
 }
 
