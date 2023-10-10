@@ -248,7 +248,7 @@
     font-weight: 700;
 } 
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
     .task-modal-container .modal .task-header {
         width: 270px;
     }

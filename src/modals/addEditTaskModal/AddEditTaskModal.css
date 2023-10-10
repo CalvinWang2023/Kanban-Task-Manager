@@ -216,7 +216,7 @@
     color: var(--text-color);
 }
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
     .addedit-task-modal-container .modal .task-name-input,
     .addedit-task-modal-container .modal .task-description-input {
         width: 270px;

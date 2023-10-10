@@ -79,7 +79,7 @@
     background-color: var(--cancel-hover-color);
 }
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
     .delete-modal-container .modal .content {
         width: 270px;
     }

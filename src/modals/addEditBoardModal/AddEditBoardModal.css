@@ -144,7 +144,7 @@
     color: var(--text-color);
 }
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
     .addedit-board-modal-container .modal .board-name-input {
         width: 240px;
     }

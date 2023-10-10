@@ -46,13 +46,6 @@ body::-webkit-scrollbar {
     display: none;
 } 
 
-html,
-body,
-#root,
-.App {
-  min-height: 100vh;
-}
-
 
 /* ::-webkit-scrollbar {
     max-width: 0.625rem;

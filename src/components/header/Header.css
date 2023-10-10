@@ -6,7 +6,6 @@
     z-index: 10;
     background-color: var(--text-color);
     height: 75px;
-
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -172,7 +171,7 @@
     font-weight: 700;
 }
 
-@media only screen and (max-width: 900px) {
+@media (max-width: 900px) {
     .header-container header .left .board-name-container h4 {
         font-size: 1.2rem;
     }
@@ -181,7 +180,7 @@
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
     .header-container header {
         margin: 20px 0;
     }

@@ -4,7 +4,6 @@
     margin-left: 285px;
     margin-top: 75px;
     min-height: 100vh;
-    min-width: 100vh;
     border-left: 1.5px var(--sidebar-hover-color) solid;
 }
 
@@ -128,7 +127,7 @@
     color: var(--dark-sidebar-text-color);
 }
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
     .board-container { 
         margin-left: 0;
     }
