@@ -60,9 +60,6 @@
 .addedit-board-modal-container .modal input:focus {
     outline: 1px var(--button-color) solid;
 }
-.addedit-board-modal-container .modal input:hover {
-    border-color: var(--button-color); 
-}
 
 .dark .addedit-board-modal-container .modal input {
     background-color: var(--dark-sidebar-color);
@@ -100,9 +97,6 @@
 .addedit-board-modal-container .modal .board-column-input .column-task img {
     cursor: pointer;
 }
-.addedit-board-modal-container .modal .board-column-input .column-task img:hover {
-    filter: invert(13%) sepia(85%) saturate(6367%) hue-rotate(7deg) brightness(92%) contrast(130%);
-}
 
 .addedit-board-modal-container .modal .board-column-input .column-task input {
     width: 475px;
@@ -125,15 +119,9 @@
 .addedit-board-modal-container .modal .create-column-button {
     background-color: rgb(241, 238, 238);
 }
-.addedit-board-modal-container .modal .create-column-button:hover {
-    background-color:  #cfd3da;   
-}
 
 .addedit-board-modal-container .modal .create-board-button {
     background-color: var(--button-color);
-}
-.addedit-board-modal-container .modal .create-board-button:hover {
-    background-color: var(--hover-color);
 }
 
 .addedit-board-modal-container .modal .create-column-button p {
@@ -174,3 +162,18 @@
     border-radius: 6px;
     margin: 3px;
 } 
+
+@media (hover: hover) {
+    .addedit-board-modal-container .modal input:hover {
+        border-color: var(--button-color); 
+    }
+    .addedit-board-modal-container .modal .create-column-button:hover {
+        background-color:  #cfd3da;   
+    }
+    .addedit-board-modal-container .modal .create-board-button:hover {
+        background-color: var(--hover-color);
+    }
+    .addedit-board-modal-container .modal .board-column-input .column-task img:hover {
+        filter: invert(13%) sepia(85%) saturate(6367%) hue-rotate(7deg) brightness(92%) contrast(130%);
+    }
+}

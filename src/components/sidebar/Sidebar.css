@@ -79,18 +79,10 @@
     filter: invert(56%) sepia(58%) saturate(5507%) hue-rotate(220deg) brightness(88%) contrast(77%); 
 }
 
-.sidebar-container .container .add-board-button button:hover {
-    background-color: var(--sidebar-hover-color);
-}
-
 .sidebar-container .container ul .board-section p {
     font-weight: 700;
 }
 
-.sidebar-container .container ul .board-section:hover {
-    background-color: var(--sidebar-hover-color);
-    color: var(--button-color);
-}
 .sidebar-container .container ul .board-section:hover img {
     filter: invert(56%) sepia(58%) saturate(5507%) hue-rotate(220deg) brightness(88%) contrast(77%); 
 }
@@ -112,14 +104,6 @@
     color: var(--dark-sidebar-text-color);
 }
 
-.sidebar-container .container .sidebar-hide:hover img {
-    filter: invert(56%) sepia(58%) saturate(5507%) hue-rotate(220deg) brightness(88%) contrast(77%);
-}
-
-.sidebar-container .container .sidebar-hide:hover p {
-    color: var(--button-color);
-}
-
 .sidebar-container .container .sidebar-hide {
     position: fixed;
     z-index: 1;
@@ -138,10 +122,7 @@
 
     cursor: pointer;
 }
-.sidebar-container .container .sidebar-hide:hover {
-    background-color: var(--sidebar-hover-color);
-    color: var(--button-color);
-}
+
 .sidebar-container .container .sidebar-hide p {
     font-weight: 700;
 }
@@ -159,10 +140,6 @@
     width: 55px;
 
     cursor: pointer;
-}
-
-.closed .sidebar-open:hover {
-    background-color: var(--hover-color);
 }
 
 /*********************************** switch *****************************/
@@ -228,4 +205,27 @@
 
 .sidebar-container .container ul::-webkit-scrollbar {
     display: none;
+}
+
+@media (hover: hover) {
+    .closed .sidebar-open:hover {
+        background-color: var(--hover-color);
+    }
+    .sidebar-container .container .sidebar-hide:hover {
+        background-color: var(--sidebar-hover-color);
+        color: var(--button-color);
+    }
+    .sidebar-container .container .sidebar-hide:hover img {
+        filter: invert(56%) sepia(58%) saturate(5507%) hue-rotate(220deg) brightness(88%) contrast(77%);
+    }
+    .sidebar-container .container .sidebar-hide:hover p {
+        color: var(--button-color);
+    }
+    .sidebar-container .container .add-board-button button:hover {
+        background-color: var(--sidebar-hover-color);
+    }
+    .sidebar-container .container ul .board-section:hover {
+        background-color: var(--sidebar-hover-color);
+        color: var(--button-color);
+    }
 }

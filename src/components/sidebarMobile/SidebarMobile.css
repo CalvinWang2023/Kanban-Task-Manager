@@ -96,20 +96,8 @@
     filter: invert(56%) sepia(58%) saturate(5507%) hue-rotate(220deg) brightness(88%) contrast(77%); 
 }
 
-.sidebar-mobile-container .modal .add-board-button button:hover {
-    background-color: var(--sidebar-hover-color);
-}
-
 .sidebar-mobile-container .modal ul .board-section p {
     font-weight: 700;
-}
-
-.sidebar-mobile-container .modal ul .board-section:hover {
-    background-color: var(--sidebar-hover-color);
-    color: var(--button-color);
-}
-.sidebar-mobile-container .modal ul .board-section:hover img {
-    filter: invert(56%) sepia(58%) saturate(5507%) hue-rotate(220deg) brightness(88%) contrast(77%); 
 }
 
 .sidebar-mobile-container .modal ul .active-board {
@@ -179,4 +167,17 @@
 
 .sidebar-mobile-container .modal ul::-webkit-scrollbar {
     display: none;
+}
+
+@media (hover: hover) {
+    .sidebar-mobile-container .modal ul .board-section:hover {
+        background-color: var(--sidebar-hover-color);
+        color: var(--button-color);
+    }
+    .sidebar-mobile-container .modal .add-board-button button:hover {
+        background-color: var(--sidebar-hover-color);
+    }
+    .sidebar-mobile-container .modal ul .board-section:hover img {
+        filter: invert(56%) sepia(58%) saturate(5507%) hue-rotate(220deg) brightness(88%) contrast(77%); 
+    }
 }

@@ -29,13 +29,16 @@
     cursor: pointer;
     transition: .3s;
 }
-.empty-modal-container .modal .selection button:hover {
-    background-color: var(--hover-color);
-}
 
 .empty-modal-container .modal .selection button p {
     color: var(--text-color);
     font-weight: 700;
     font-size: 1rem;
     padding: 14px 20px;
+}
+
+@media (hover: hover) {
+    .empty-modal-container .modal .selection button:hover {
+        background-color: var(--hover-color);
+    }
 }

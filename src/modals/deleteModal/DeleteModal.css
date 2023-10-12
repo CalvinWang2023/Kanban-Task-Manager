@@ -66,17 +66,11 @@
     color: var(--text-color);
     font-weight: 700;
 }
-.delete-modal-container .modal .button-choices .delete:hover {
-    background-color: var(--delete-hover-color);
-}
 
 .delete-modal-container .modal .button-choices .cancel {
     background-color: var(--board-bg-color);
     color: var(--button-color);
     font-weight: 700;
-}
-.delete-modal-container .modal .button-choices .cancel:hover {
-    background-color: var(--cancel-hover-color);
 }
 
 @media (max-width: 768px) {
@@ -85,5 +79,14 @@
     }
     .delete-modal-container .modal .button-choices button {
         width: 270px;
+    }
+}
+
+@media (hover: hover) {
+    .delete-modal-container .modal .button-choices .cancel:hover {
+        background-color: var(--cancel-hover-color);
+    }
+    .delete-modal-container .modal .button-choices .delete:hover {
+        background-color: var(--delete-hover-color);
     }
 }

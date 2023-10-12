@@ -63,9 +63,6 @@
     border-radius: 50%;
     cursor: pointer;
 }
-.task-modal-container .modal .task-header .ellipsis .ellipsis-button:hover {
-    background-color: var(--ellipsis-hover-color);
-}
 
 .task-modal-container .modal .description {
     width: 440px;
@@ -122,13 +119,6 @@
     accent-color: var(--button-color);
 }
 
-.task-modal-container .modal .subtasks .subtask-list .subtask:hover {
-    background-color: var(--sidebar-hover-color);
-}
-.dark .task-modal-container .modal .subtasks .subtask-list .subtask:hover {
-    background-color: var(--dark-sidebar-text-color);
-}
-
 .task-modal-container .modal .subtasks .subtask-list .subtask .unchecked {
     font-weight: 700;
     font-size: .8rem;
@@ -141,8 +131,6 @@
     color: var(--sidebar-color);
     text-decoration: line-through;
 }
-
-
 
 .task-modal-container .modal .status {
     display: flex;
@@ -166,10 +154,6 @@
     border-radius: 5px;
     border: 1px var(--board-bg-color) solid;
     cursor: pointer;
-}
-
-.task-modal-container .modal .status .status-content:hover {
-    border-color: var(--button-color);
 }
 
 .task-modal-container .modal .status .status-content p {
@@ -199,13 +183,6 @@
 .dark .task-modal-container .modal .status ul li p {
     color: var(--dark-sidebar-text-color);
 }
-
-.task-modal-container .modal .status ul li:hover p {
-    color: var(--black-text-color);
-}
-.dark .task-modal-container .modal .status ul li:hover p  {
-    color: var(--text-color);
-} 
 
 /*********************** ellipsis menu ***************************/
 
@@ -277,3 +254,24 @@
     border-radius: 6px;
     margin: 3px;
 } 
+
+@media (hover: hover) {
+    .task-modal-container .modal .status ul li:hover p {
+        color: var(--black-text-color);
+    }
+    .dark .task-modal-container .modal .status ul li:hover p  {
+        color: var(--text-color);
+    } 
+    .task-modal-container .modal .status .status-content:hover {
+        border-color: var(--button-color);
+    }
+    .task-modal-container .modal .task-header .ellipsis .ellipsis-button:hover {
+        background-color: var(--ellipsis-hover-color);
+    }
+    .task-modal-container .modal .subtasks .subtask-list .subtask:hover {
+        background-color: var(--sidebar-hover-color);
+    }
+    .dark .task-modal-container .modal .subtasks .subtask-list .subtask:hover {
+        background-color: var(--dark-sidebar-text-color);
+    }
+}

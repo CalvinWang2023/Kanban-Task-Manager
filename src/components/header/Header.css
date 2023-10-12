@@ -105,10 +105,6 @@
     cursor: default;
 }
 
-.header-container header .right .add-task:enabled:hover {
-    background-color: var(--hover-color);
-}
-
 .header-container header .right .add-task p {
     color: var(--text-color);
     font-weight: 700;
@@ -127,9 +123,6 @@
     padding: 8px 16px; 
     border-radius: 50%;
     cursor: pointer;
-}
-.header-container header .right .ellipsis .ellipsis-button:hover {
-    background-color: var(--ellipsis-hover-color);
 }
 
 .header-container .ellipsis-menu {
@@ -169,6 +162,15 @@
 .header-container .ellipsis-menu .delete {
     color: var(--delete-color);
     font-weight: 700;
+}
+
+@media (hover: hover) {
+    .header-container header .right .add-task:enabled:hover {
+        background-color: var(--hover-color);
+    }
+    .header-container header .right .ellipsis .ellipsis-button:hover {
+        background-color: var(--ellipsis-hover-color);
+    }
 }
 
 @media (max-width: 900px) {

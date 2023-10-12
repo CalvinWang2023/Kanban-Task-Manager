@@ -68,11 +68,6 @@
     color: var(--text-color);
 }
 
-.addedit-task-modal-container .modal input:hover,
-.addedit-task-modal-container .modal textarea:hover {
-    border-color: var(--button-color); 
-}
-
 .addedit-task-modal-container .modal .task-name-input,
 .addedit-task-modal-container .modal .task-description-input {
     display: flex;
@@ -109,9 +104,6 @@
 .addedit-task-modal-container .modal .subtasks-input .subtasks img {
     cursor: pointer;
 }
-.addedit-task-modal-container .modal .subtasks-input .subtasks img:hover {
-    filter: invert(13%) sepia(85%) saturate(6367%) hue-rotate(7deg) brightness(92%) contrast(130%);
-}
 
 .addedit-task-modal-container .modal .subtasks-input .subtasks input {
     width: 475px;
@@ -134,18 +126,9 @@
 .addedit-task-modal-container .modal .create-subtask-button {
     background-color: var(--board-bg-color);
 }
-.addedit-task-modal-container .modal .create-subtask-button:hover {
-    background-color: var(--hover-color);   
-}
-.addedit-task-modal-container .modal .create-subtask-button:hover p {
-    color: var(--text-color);
-}
 
 .addedit-task-modal-container .modal .create-task-button {
     background-color: var(--button-color);
-}
-.addedit-task-modal-container .modal .create-task-button:hover {
-    background-color: var(--hover-color);
 }
 
 .addedit-task-modal-container .modal .create-subtask-button p {
@@ -180,10 +163,6 @@
     cursor: pointer;
 }
 
-.addedit-task-modal-container .modal .status .status-content:hover {
-    border-color: var(--button-color);
-}
-
 .addedit-task-modal-container .modal .status .status-content p {
     font-weight: 700;
     font-size: .85rem;
@@ -207,13 +186,6 @@
     font-weight: 700;
     font-size: .85rem;
     color: var(--dark-sidebar-text-color);
-}
-
-.addedit-task-modal-container .modal .status ul li:hover p {
-    color: var(--black-text-color);
-}
-.dark .addedit-task-modal-container .modal .status ul li:hover p {
-    color: var(--text-color);
 }
 
 @media (max-width: 768px) {
@@ -249,3 +221,31 @@
     border-radius: 6px;
     margin: 3px;
 } 
+
+@media (hover: hover) {
+    .addedit-task-modal-container .modal .status ul li:hover p {
+        color: var(--black-text-color);
+    }
+    .dark .addedit-task-modal-container .modal .status ul li:hover p {
+        color: var(--text-color);
+    }
+    .addedit-task-modal-container .modal .status .status-content:hover {
+        border-color: var(--button-color);
+    }
+    .addedit-task-modal-container .modal input:hover,
+    .addedit-task-modal-container .modal textarea:hover {
+        border-color: var(--button-color); 
+    }
+    .addedit-task-modal-container .modal .subtasks-input .subtasks img:hover {
+        filter: invert(13%) sepia(85%) saturate(6367%) hue-rotate(7deg) brightness(92%) contrast(130%);
+    }
+    .addedit-task-modal-container .modal .create-task-button:hover {
+        background-color: var(--hover-color);
+    }
+    .addedit-task-modal-container .modal .create-subtask-button:hover {
+        background-color: var(--hover-color);   
+    }
+    .addedit-task-modal-container .modal .create-subtask-button:hover p {
+        color: var(--text-color);
+    }
+}
